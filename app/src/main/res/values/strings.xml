@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">AnimationDemo</string>
+    <string name="Lorem">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata</string>
+
+    <!-- animateColorAsState -->
+    <string name="animateColorAsState_shortInfo">这个动画根据 blueState 的布尔值变化，在红色与灰色之间平滑过渡，并实时更新 Box 的背景色。\n\n它是一个最基础、最轻量的 颜色过渡动画（Color Transition Animation），适用于状态变化时快速给用户一个自然的视觉反馈。</string>
+    <string name="animateColorAsState_details">（1）animateColorAsState 是什么？\n\n它是 Compose 官方提供的 单值动画 API（Single-Value Animation），更类似于一个 “自动补间器”：\n\t•\t输入：目标值 targetValue\n\t•\t输出：一个不断更新的动画值 color\n\t•\t生命周期：当目标值变化，动画开始；当动画完成，值稳定在目标上\n\n（2）它做了哪些事情？\n\t•\t比较新旧 targetValue\n\t•\t自动创建一个 Color 的插值动画（ArgbEvaluator）\n\t•\t在 300ms（默认）内平滑过渡颜色\n\t•\t根据帧率不停更新 composable\n\t•\t直到颜色抵达新的目标值\n\n你不用自己写动画时间，不用写插值器，不用写逐帧逻辑，Compose 全部帮你处理。</string>
+
+    <!-- animateContentSize -->
+    <string name="animateContentSize_shortInfo">当一个组件的尺寸因内容或状态改变时，这个 Modifier 会自动为其尺寸变化添加平滑的动画过渡效果。\n\n它非常适合用于可展开/折叠的卡片、动态文本块等场景，避免尺寸突变带来的生硬感。</string>
+    <string name="animateContentSize_details">（1）animateContentSize 是什么？\n\n它是一个 Modifier（修饰符），你可以将它应用到任何 Composable 上。它的作用是观察并响应这个 Composable 的目标尺寸变化。\n\n（2）它做了哪些事情？\n\t•\t监听 Composable 的目标尺寸（宽度或高度）何时发生变化。\n\t•\t当变化发生时，它会阻止立即的、跳跃式的尺寸更新。\n\t•\t取而代之，它会自动创建一个 SizeAnimation（尺寸动画）。\n\t•\t这个动画会在一个短暂的时间内，平滑地将尺寸从旧值插值到新值。\n\t•\t这使得尺寸的增长或收缩看起来非常流畅和自然。</string>
+
+    <!-- animateContentVisibility -->
+    <string name="animateContentVisibility_shortInfo">通过一个布尔值来控制其子内容的出现和消失，并在此过程中应用指定的进入（Enter）和退出（Exit）动画。\n\n你可以用它轻松实现元素的淡入淡出、滑动进入/退出等效果，是控制UI元素显隐的理想选择。</string>
+    <string name="animateContentVisibility_details">（1）AnimatedVisibility 是什么？\n\n它是一个容器 Composable，你将需要控制显隐的UI元素包裹在其中。它最关键的参数是 `visible: Boolean`。\n\n（2）它做了哪些事情？\n\t•\t当 `visible` 的状态从 `false` 变为 `true` 时，它会执行你定义的 `enter` 过渡动画（例如 `fadeIn()` 或 `slideInVertically()`），让内容优雅地出现。\n\t•\t当 `visible` 的状态从 `true` 变为 `false` 时，它会执行 `exit` 过渡动画（例如 `fadeOut()` 或 `slideOutHorizontally()`），让内容平滑地消失。\n\t•\t在动画执行期间，它负责管理 Composable 在组件树中的添加与移除，你只需要关心状态即可。</string>
+
+    <!-- animateOpacityAsState -->
+    <string name="animateOpacityAsState_shortInfo">这是一个专门用于处理透明度（Alpha）的单值动画。它根据状态变化，在两个浮点数值之间平滑过渡，常用于实现组件的淡入淡出效果。\n\n和 animateColorAsState 类似，它也是一个轻量级的“即发即忘”式动画。</string>
+    <string name="animateOpacityAsState_details">（1）animateFloatAsState 是什么？\n\n它是 `animate*AsState` 家族的一员，专门处理 `Float` 类型的数值动画。在这个例子中，我们用它来驱动透明度（alpha），其取值范围是 0.0f (完全透明) 到 1.0f (完全不透明)。\n\n（2）它做了哪些事情？\n\t•\t接收一个目标浮点值 `targetValue`。\n\t•\t当 `targetValue` 改变时，它会自动创建一个从当前值到目标值的插值动画。\n\t•\t它返回一个 `State&lt;Float&gt;` 对象，该对象的值在动画的每一帧都会更新。\n\t•\t将这个返回的 alpha 值应用到 `Modifier.alpha()` 中，就能让 Composable 随着值的变化而重绘，从而产生平滑的淡入淡出效果。</string>
+
+    <!-- shareTransition -->
+    <string name="shareTransition_shortInfo">共享元素过渡（Shared Element Transition）可以在两个不同的布局状态之间，为一个或多个共享的组件创建连贯的、魔法般的移动和形变动画。\n\n它极大地提升了用户体验，尤其是在导航场景中（如从列表页到详情页），能帮助用户清晰地感知元素的来龙去脉。</string>
+    <string name="shareTransition_details">（1）共享元素过渡是什么？\n\n它是一种高级动画技术，用于连接两个视觉上不同、但概念上相同的UI元素。它让用户感觉元素是从一个地方“飞”并变换到另一个地方，而不是一个消失、另一个出现。\n\n（2）它是如何工作的？\n\t•\t首先，用 `SharedTransitionLayout` 包裹住包含起始和结束两种状态的父 Composable。\n\t•\t然后，在 `AnimatedContent` 提供的作用域内，使用 `Modifier.sharedElement()` 为起始和结束位置的同一个元素打上相同的唯一 `key`。\n\t•\tCompose 会自动计算这两个元素在位置、尺寸、形状等方面的差异。\n\t•\t最后，它会生成一个平滑的过渡动画，来模拟元素从起点到终点的变换过程。`Modifier.sharedBounds` 则常用于同步容器（如边框）的变换。</string>
+
+    <!-- updateTransition -->
+    <string name="updateTransition_shortInfo">这是一个功能强大的动画协调器。当你的UI需要根据单一状态（如 `Expanded`/`Collapsed`）同时改变多个属性（如颜色、尺寸、圆角）时，`updateTransition` 可以确保所有这些动画同步开始、协同执行。\n\n它是处理复杂、多属性、状态驱动动画的首选方案。</string>
+    <string name="updateTransition_details">（1）updateTransition 是什么？\n\n它是一个基于状态的过渡 API。你向它提供一个目标状态（`targetState`），它会返回一个 `Transition` 对象。这个对象就像一个动画的“总指挥”。\n\n（2）它做了哪些事情？\n\t•\t与 `animate*AsState` 只能驱动单个值不同，`updateTransition` 用于协调多个动画。\n\t•\t拿到 `Transition` 对象后，你可以调用其扩展函数，如 `transition.animateColor()`、`transition.animateDp()` 等，为每一个你想动的属性创建一个子动画。\n\t•\t当你提供给 `updateTransition` 的 `targetState` 发生变化时，“总指挥”会立即命令所有子动画同时开始。\n\t•\t这保证了所有视觉变化都是同步的，你甚至可以为每个子动画指定不同的动画规格（如时长、缓动曲线），创造出丰富而协调的动态效果。</string>
+
+</resources>
