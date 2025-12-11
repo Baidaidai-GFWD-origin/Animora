@@ -37,53 +37,73 @@ import com.baidaidai.testapp.shared.viewModel.blueStateViewModel
 fun animationDetailContainer(
     viewModel: animationDatasViewModel,
     contentPaddingValues: PaddingValues,
-    blueStateViewModel: blueStateViewModel
+    blueStateViewModel: blueStateViewModel,
+    navController: NavController
 ){
 
 
 
     val animationDatasViewModel = viewModel
+    val blueStateViewModel = blueStateViewModel
+
+    val blueState by blueStateViewModel.blueState.collectAsState()
     val animationDatas by animationDatasViewModel.selectedAnimation.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .padding(contentPaddingValues)
-            .scrollable(
-                state = rememberScrollableState { 1f },
-                orientation = Orientation.Vertical
-            )
-            .padding(horizontal = 30.dp)
-    ){
-        Card(
-            colors = CardColors(
-                containerColor = MaterialTheme.colorScheme.primaryContainer,
-                contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                disabledContainerColor = MaterialTheme.colorScheme.error,
-                disabledContentColor = MaterialTheme.colorScheme.onError
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            Box(
-                modifier = Modifier
-                    .padding(30.dp)
+    Scaffold(
+        topBar = {
+            NecessaryComponents.animationDetailsTopAppBar(
+                animationId = animationDatas.id,
+                content = animationDatas.name
             ) {
-                animationDatas.animationFiles(blueStateViewModel.blueState.collectAsState().value)
+                navController.popBackStack()
+            }
+        },
+        floatingActionButton = {
+            NecessaryComponents.animationDetailsFloatActionButton {
+                blueStateViewModel.changeBlueState(!blueState)
             }
         }
-        HorizontalDivider(
-            thickness = 3.dp,
+    ){ contentPaddingValues->
+        Column(
             modifier = Modifier
-                .padding(
-                    top = 10.dp,
-                    bottom = 10.dp,
-                    start = 5.dp,
-                    end = 5.dp
+                .padding(contentPaddingValues)
+                .scrollable(
+                    state = rememberScrollableState { 1f },
+                    orientation = Orientation.Vertical
                 )
-        )
-        Text(
-            text = stringResource(animationDatas.details)
-        )
+                .padding(horizontal = 30.dp)
+        ){
+            Card(
+                colors = CardColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    disabledContainerColor = MaterialTheme.colorScheme.error,
+                    disabledContentColor = MaterialTheme.colorScheme.onError
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Box(
+                    modifier = Modifier
+                        .padding(30.dp)
+                ) {
+                    animationDatas.animationFiles(blueStateViewModel.blueState.collectAsState().value)
+                }
+            }
+            HorizontalDivider(
+                thickness = 3.dp,
+                modifier = Modifier
+                    .padding(
+                        top = 10.dp,
+                        bottom = 10.dp,
+                        start = 5.dp,
+                        end = 5.dp
+                    )
+            )
+            Text(
+                text = stringResource(animationDatas.details)
+            )
+        }
     }
 }
 

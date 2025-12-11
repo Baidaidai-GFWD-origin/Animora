@@ -6,11 +6,19 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,6 +52,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.baidaidai.testapp.shared.viewModel.animationDatasViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
+import com.baidaidai.testapp.components.home.infoScreen.infoScreen
 import com.baidaidai.testapp.shared.viewModel.blueStateViewModel
 
 class MainActivity : ComponentActivity() {
@@ -82,25 +91,23 @@ fun TestViewModel(
     var animationId = viewModel.selectedAnimation.collectAsState().value.id
     Scaffold(
         topBar = {
-            when(currentRoute){
-                "Details" -> {
-                    NecessaryComponents.animationDetailsTopAppBar(
-                        animationId = animationId,
-                        content = topAppBarContent,
-                        onClick = {
-                            navController.popBackStack()
-                            blueStateViewModel.changeBlueState(false)
-                        }
-                    )
-                }
-                else -> {
-                    NecessaryComponents.homeTopAppBar()
+            AnimatedVisibility(
+                visible = (currentRoute == "Home" || currentRoute == "List") ,
+                exit = shrinkVertically(
+                    shrinkTowards = Alignment.Top
+                ),
+                enter = expandVertically(
+                    expandFrom = Alignment.Top
+                )
+            ) {
+                NecessaryComponents.homeTopAppBar {
+                    navController.navigate("Info")
                 }
             }
         },
         bottomBar = {
             AnimatedVisibility(
-                visible = currentRoute != "Details",
+                visible = currentRoute != "Details" ,
                 exit = shrinkVertically(
                     shrinkTowards = Alignment.Bottom
                 ),
@@ -112,18 +119,20 @@ fun TestViewModel(
                     controller = navController
                 )
             }
-        },
-        floatingActionButton = {
-            if (currentRoute == "Details"){
-                NecessaryComponents.animationDetailsFloatActionButton {
-                    blueStateViewModel.changeBlueState(!blueState)
-                }
-            }
         }
     ) { contentPadding ->
         NavHost(
             navController = navController,
-            startDestination = "Home"
+            startDestination = "Home",
+            enterTransition = {
+                slideInHorizontally {it}
+            },
+            exitTransition = { ExitTransition.None },
+            popExitTransition = {
+              slideOutHorizontally{ it }
+            },
+            popEnterTransition = { EnterTransition.None }
+
         ) {
             composable(
                 route = "Home"
@@ -137,6 +146,13 @@ fun TestViewModel(
                     introduceCard()
                     onlySpringSpce()
                 }
+            }
+            composable(
+                route = "Info"
+            ){
+                infoScreen(
+                    navController = navController
+                )
             }
             navigation(
                 startDestination = "List",
@@ -157,7 +173,8 @@ fun TestViewModel(
                     animationDetailContainer(
                         viewModel = viewModel,
                         contentPaddingValues = contentPadding,
-                        blueStateViewModel = blueStateViewModel
+                        blueStateViewModel = blueStateViewModel,
+                        navController = navController
                     )
                 }
             }

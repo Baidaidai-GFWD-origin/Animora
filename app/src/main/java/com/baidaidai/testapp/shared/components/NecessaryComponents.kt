@@ -32,18 +32,21 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 final object NecessaryComponents {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun homeTopAppBar(){
+    fun homeTopAppBar(
+        onClick: () -> Unit
+    ){
         TopAppBar(
             title = {
                 Text("Jetpack Animation Overview")
             },
             actions = {
                 IconButton(
-                    onClick = {}
+                    onClick = onClick
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.info_24px),
@@ -68,14 +71,16 @@ final object NecessaryComponents {
             )
 
             var selected by rememberSaveable { mutableIntStateOf(0) }
+            val navBackStackEntry by controller.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry?.destination?.route
 
             NavigationRenderingList.forEach { item ->
                 NavigationBarItem(
-                    selected = selected == item.number,
+                    selected = item.contentDescription == currentRoute,
                     onClick = {
                         selected = item.number
                         coroutineScope.launch {
-                            controller.navigate(item.contentDescription)
+                            if (currentRoute == item.contentDescription) else controller.navigate(item.contentDescription)
                         }
                     },
                     icon = {
@@ -87,48 +92,5 @@ final object NecessaryComponents {
                 )
             }
         }
-    }
-
-    @OptIn(
-        ExperimentalMaterial3Api::class,
-        ExperimentalSharedTransitionApi::class
-    )
-    @Composable
-    fun animationDetailsTopAppBar(
-        animationId: Int,
-        content: String,
-        onClick: () -> Unit
-
-    ){
-        TopAppBar(
-            title = {
-                Text(text = content)
-            },
-            navigationIcon = {
-                IconButton(
-                    onClick = onClick
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowBackIosNew,
-                        contentDescription = "Back"
-                    )
-                }
-            }
-        )
-    }
-
-    @Composable
-    fun animationDetailsFloatActionButton(
-        onClick:()-> Unit
-    ){
-        ExtendedFloatingActionButton(
-            onClick = onClick,
-            icon = { Icon(Icons.Outlined.Animation, "Click To Start Animation") },
-            text = { Text(text = "Start Animation") },
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier.Companion
-                .padding(bottom = 50.dp)
-        )
     }
 }
