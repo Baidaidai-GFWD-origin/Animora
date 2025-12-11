@@ -1,4 +1,4 @@
-package com.baidaidai.testapp.components.home.model
+package com.baidaidai.testapp.components.StartScreen.model
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

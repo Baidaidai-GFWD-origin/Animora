@@ -23,7 +23,6 @@ final object NecessaryComponents {
     )
     @Composable
     fun animationDetailsTopAppBar(
-        animationId: Int,
         content: String,
         onClick: () -> Unit
 

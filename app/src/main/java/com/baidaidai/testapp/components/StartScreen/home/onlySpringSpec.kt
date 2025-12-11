@@ -1,4 +1,4 @@
-package com.baidaidai.testapp.components.home
+package com.baidaidai.testapp.components.StartScreen.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

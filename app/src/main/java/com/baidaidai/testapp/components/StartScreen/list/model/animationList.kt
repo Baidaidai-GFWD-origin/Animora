@@ -1,13 +1,8 @@
-package com.baidaidai.testapp.components.list.model
+package com.baidaidai.testapp.components.StartScreen.list.model
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.baidaidai.testapp.components.animation.demo.singel.*
 import com.baidaidai.testapp.R
-import androidx.compose.runtime.getValue
 import com.baidaidai.testapp.shared.dataClass.AnimationDatas
-import com.baidaidai.testapp.shared.viewModel.blueStateViewModel
 
 
 val animationList = listOf<AnimationDatas>(

@@ -1,4 +1,4 @@
-package com.baidaidai.testapp.components.home
+package com.baidaidai.testapp.components.StartScreen.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
