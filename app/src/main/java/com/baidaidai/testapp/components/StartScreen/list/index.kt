@@ -2,6 +2,8 @@ package com.baidaidai.testapp.components.StartScreen.list
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -29,6 +31,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -51,8 +54,11 @@ fun animationListContainer(
     val animationDatasViewModel = LocalAnimationViewModel.current
     var bottomSheetState by rememberSaveable { mutableStateOf(false) }
     val modalBottomSheetState = rememberModalBottomSheetState()
-
     val coroutineScope = rememberCoroutineScope()
+
+    val blurValue by animateDpAsState(
+        targetValue = if (bottomSheetState) 10.dp else 0.dp
+    )
 
     @StringRes
     var bottomSheetContent: Int by rememberSaveable { mutableIntStateOf(0) }
@@ -72,6 +78,7 @@ fun animationListContainer(
             .background(color = MaterialTheme.colorScheme.background)
             .padding(contentPaddingValues)
             .padding(start = 20.dp, end = 20.dp)
+            .blur(blurValue)
     ) {
         LazyColumn {
             items(
