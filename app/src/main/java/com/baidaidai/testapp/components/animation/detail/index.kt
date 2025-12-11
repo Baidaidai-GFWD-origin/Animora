@@ -31,11 +31,11 @@ import com.baidaidai.testapp.shared.viewModel.animationDatasViewModel
 import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.baidaidai.testapp.LocalAnimationViewModel
 import com.baidaidai.testapp.shared.viewModel.blueStateViewModel
 
 @Composable
 fun animationDetailContainer(
-    viewModel: animationDatasViewModel,
     contentPaddingValues: PaddingValues,
     blueStateViewModel: blueStateViewModel,
     navController: NavController
@@ -43,7 +43,7 @@ fun animationDetailContainer(
 
 
 
-    val animationDatasViewModel = viewModel
+    val animationDatasViewModel = LocalAnimationViewModel.current
     val blueStateViewModel = blueStateViewModel
 
     val blueState by blueStateViewModel.blueState.collectAsState()

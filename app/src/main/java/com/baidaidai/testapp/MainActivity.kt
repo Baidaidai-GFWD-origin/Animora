@@ -55,6 +55,10 @@ import androidx.compose.ui.Alignment
 import com.baidaidai.testapp.components.home.infoScreen.infoScreen
 import com.baidaidai.testapp.shared.viewModel.blueStateViewModel
 
+val LocalAnimationViewModel = compositionLocalOf<animationDatasViewModel> {
+    error("No animationDatasViewModel provided")
+}
+
 class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,9 +66,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             TestAppTheme {
                 val animationDetailsViewModel = viewModel<animationDatasViewModel>()
-                TestViewModel(
-                    viewModel = animationDetailsViewModel
-                )
+                CompositionLocalProvider(
+                    LocalAnimationViewModel provides animationDetailsViewModel
+                ) {
+                    TestViewModel()
+                }
             }
         }
     }
@@ -78,17 +84,19 @@ class MainActivity : ComponentActivity() {
 )
 @Composable
 fun TestViewModel(
-    viewModel: animationDatasViewModel
 ) {
+
+    val animationDetailsViewModel = LocalAnimationViewModel.current
 
     val navController = rememberNavController()
     val blueStateViewModel = viewModel<blueStateViewModel>()
     val blueState by blueStateViewModel.blueState.collectAsState()
 
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    var topAppBarContent = viewModel.selectedAnimation.collectAsState().value.name
-    var animationId = viewModel.selectedAnimation.collectAsState().value.id
+    var topAppBarContent = animationDetailsViewModel.selectedAnimation.collectAsState().value.name
+    var animationId = animationDetailsViewModel.selectedAnimation.collectAsState().value.id
     Scaffold(
         topBar = {
             AnimatedVisibility(
@@ -162,7 +170,6 @@ fun TestViewModel(
                     route = "List"
                 ) {
                     animationListContainer(
-                        viewModel = viewModel,
                         contentPaddingValues = contentPadding,
                         navController = navController,
                     )
@@ -171,7 +178,6 @@ fun TestViewModel(
                     route = "Details"
                 ){
                     animationDetailContainer(
-                        viewModel = viewModel,
                         contentPaddingValues = contentPadding,
                         blueStateViewModel = blueStateViewModel,
                         navController = navController
@@ -189,11 +195,7 @@ fun TestViewModel(
 @PreviewLightDark
 @Composable
 fun TextBoxPreview() {
-    val animationDatasViewModel = viewModel<animationDatasViewModel>()
-
     TestAppTheme {
-        TestViewModel(
-            viewModel = animationDatasViewModel
-        )
+        TestViewModel()
     }
 }
