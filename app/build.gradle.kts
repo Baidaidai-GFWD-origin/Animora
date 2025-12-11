@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "com.baidaidai.testapp"
+    namespace = "com.baidaidai.animora"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.baidaidai.testapp"
+        applicationId = "com.baidaidai.animora"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
