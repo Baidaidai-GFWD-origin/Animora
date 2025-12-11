@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
                 CompositionLocalProvider(
                     LocalAnimationViewModel provides animationDetailsViewModel
                 ) {
-                    TestViewModel()
+                    TestApp()
                 }
             }
         }
@@ -83,20 +83,15 @@ class MainActivity : ComponentActivity() {
     ExperimentalSharedTransitionApi::class
 )
 @Composable
-fun TestViewModel(
+fun TestApp(
 ) {
-
-    val animationDetailsViewModel = LocalAnimationViewModel.current
 
     val navController = rememberNavController()
     val blueStateViewModel = viewModel<blueStateViewModel>()
-    val blueState by blueStateViewModel.blueState.collectAsState()
-
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
-    var topAppBarContent = animationDetailsViewModel.selectedAnimation.collectAsState().value.name
-    var animationId = animationDetailsViewModel.selectedAnimation.collectAsState().value.id
+
     Scaffold(
         topBar = {
             AnimatedVisibility(
@@ -196,6 +191,6 @@ fun TestViewModel(
 @Composable
 fun TextBoxPreview() {
     TestAppTheme {
-        TestViewModel()
+        TestApp()
     }
 }
