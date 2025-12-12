@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation("androidx.compose.material3:material3-adaptive-navigation-suite")
+    implementation(libs.material)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -70,5 +71,6 @@ dependencies {
     implementation("androidx.compose.ui:ui:1.9.0")
     implementation("androidx.compose.ui:ui-graphics:1.9.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.9.0")
+    implementation("androidx.core:core-splashscreen:1.0.0")
 
 }
