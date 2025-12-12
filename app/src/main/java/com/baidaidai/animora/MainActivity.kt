@@ -1,6 +1,8 @@
 package com.baidaidai.animora
 
+import android.app.Activity
 import android.os.Bundle
+import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalSharedTransitionApi
@@ -16,8 +18,10 @@ import com.baidaidai.animora.components.animation.detail.animationDetailContaine
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.baidaidai.animora.shared.viewModel.animationDatasViewModel
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.baidaidai.animora.components.StartScreen.startScreenContainer
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
+import com.google.android.material.color.DynamicColors
 
 val LocalAnimationViewModel = compositionLocalOf<animationDatasViewModel> {
     error("No animationDatasViewModel provided")

@@ -31,7 +31,7 @@ final object NecessaryComponents {
     ){
         TopAppBar(
             title = {
-                Text("Jetpack Animation Overview")
+                Text("Animora")
             },
             actions = {
                 IconButton(
