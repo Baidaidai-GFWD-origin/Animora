@@ -26,4 +26,76 @@
     <string name="updateTransition_shortInfo">这是一个功能强大的动画协调器。当你的UI需要根据单一状态（如 `Expanded`/`Collapsed`）同时改变多个属性（如颜色、尺寸、圆角）时，`updateTransition` 可以确保所有这些动画同步开始、协同执行。\n\n它是处理复杂、多属性、状态驱动动画的首选方案。</string>
     <string name="updateTransition_details">（1）updateTransition 是什么？\n\n它是一个基于状态的过渡 API。你向它提供一个目标状态（`targetState`），它会返回一个 `Transition` 对象。这个对象就像一个动画的“总指挥”。\n\n（2）它做了哪些事情？\n\t•\t与 `animate*AsState` 只能驱动单个值不同，`updateTransition` 用于协调多个动画。\n\t•\t拿到 `Transition` 对象后，你可以调用其扩展函数，如 `transition.animateColor()`、`transition.animateDp()` 等，为每一个你想动的属性创建一个子动画。\n\t•\t当你提供给 `updateTransition` 的 `targetState` 发生变化时，“总指挥”会立即命令所有子动画同时开始。\n\t•\t这保证了所有视觉变化都是同步的，你甚至可以为每个子动画指定不同的动画规格（如时长、缓动曲线），创造出丰富而协调的动态效果。</string>
 
+    <!-- animatable -->
+    <string name="AnimateTo_shortInfo">`Animatable` 是一个功能强大的、基于协程的 API，用于对单个值（如 `Float`, `Color`, `Dp` 等）进行动画。与
+    `animate*AsState` 不同，它提供了更精细的控制能力，尤其适合处理手势驱动或需要中断和重启的复杂动画场景。</string>
+    <string name="AnimateTo_details">（1）`Animatable` 是什么？\n\n它是一个值的容器，可以通过 `animateTo`
+    等挂起函数来改变其值。由于其操作位于协程中，因此可以完全控制动画的启动、停止和顺序，实现复杂的动画逻辑。\n\n（2）它是如何工作的？ 首先，使用
+    `remember { Animatable(initialValue) }` 创建并记住一个 `Animatable` 实例。 在 `LaunchedEffect` 或其他协程作用域中，调用
+    `animatable.animateTo(targetValue)` 来启动一个从当前值到目标值的动画。这是一个挂起函数，会等待动画完成后再继续执行后续代码。 通过访问
+    `animatable.value` 来获取当前值，并将其应用于 Modifier（如 `Modifier.alpha(animatable.value)`)。</string>
+
+    <!-- withMediumSpringSpec -->
+    <string name="withMediumSpringSpec_shortInfo">通过为 `Animatable.animateTo` 提供 `spring`
+    动画规范（`AnimationSpec`），可以轻松创建出符合物理规律的弹簧动画效果，让组件的运动看起来更自然、生动。</string>
+    <string name="withMediumSpringSpec_details">（1）弹簧动画规范是什么？\n\n`spring` 是一种
+    `AnimationSpec`，它模拟物理世界中的弹簧行为。你可以通过调整 `dampingRatio`（阻尼比）和
+    `stiffness`（刚度）来控制弹簧的“弹性”和“回弹”效果。\n\n（2）它是如何工作的？ 创建一个 `spring` 实例，例如 `spring(dampingRatio =
+    Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium)`。 在调用 `animateTo` 函数时，将这个 `spring` 实例作为 `animationSpec`
+    参数传入。 Compose 会根据弹簧的物理模型计算出值在每一帧的变化，从而产生一个非线性的、富有活力的动画。常见的 `dampingRatio` 包括
+    `HighBouncy`（高弹性）、`MediumBouncy`（中等弹性）、`LowBouncy`（低弹性）和 `NoBouncy`（无弹性）。</string>
+
+    <!-- withDIYBezier -->
+    <string name="withDIYBezier_shortInfo">使用 `tween` 结合自定义的
+    `CubicBezierEasing`（三次贝塞尔缓动曲线），可以精确控制动画在时间上的速度变化，实现从“慢-快-慢”到“快-慢”等各种高度定制化的缓动效果。</string>
+    <string name="withDIYBezier_details">（1）自定义贝塞尔缓动是什么？\n\n它允许你通过定义一个三次贝塞尔曲线的两个控制点来创建一个自定义的
+    `Easing`。通过调整这两个点的位置，你可以设计出任意形状的速度曲线。\n\n（2）它是如何工作的？ 创建一个 `CubicBezierEasing(x1, y1, x2, y2)`
+    实例，这四个参数定义了两个控制点的坐标。 将这个 `easing` 对象传入 `tween` 动画规范中，如 `tween(durationMillis = 1000, easing = myEasing)`。
+    最后，将此 `tween` 作为 `animationSpec` 应用于 `animateTo` 函数。动画将严格按照你设计的速度曲线进行插值。</string>
+
+    <!--withKeyframesSpline-->
+    <string name="withKeyframesSpline_shortInfo">`keyframes`（关键帧）动画允许你将一个动画过程分解为多个阶段，并为每个阶段指定目标值和持续时间。这对于创建复杂的
+    、多步骤的动画序列非常有用，例如模拟一个物体先加速后减速再停止的运动。</string>
+    <string name="withKeyframesSpline_details">（1）关键帧动画是什么？\n\n它是一种定义动画的方式，你只需要在时间轴上的特定“关键”点设置属性值，系统会自动在这些点
+    之间创建平滑的过渡。你还可以为每个过渡区间指定不同的缓动曲线（`Easing`）。\n\n（2）它是如何工作的？ 使用 `keyframes` 或 `keyframesWithSpline`
+    构建器来定义动画规范。 在构建器内部，使用 `targetValue at timestamp` 的语法来定义在某个时间点（毫秒）动画值应该达到什么状态。例如 `150f at 2000`
+    表示在第2000毫秒时，值应为150f。 你可以使用 `using (easing)` 为两个关键帧之间的过渡指定一个缓动曲线。 将这个 `keyframes` 规范传入 `animateTo`
+    函数，动画就会按照你设定的剧本上演。</string>
+
+    <!--withInfinityRepeatable-->
+    <string name="withInfinityRepeatable_shortInfo">`infiniteRepeatable` 是一个特殊的 `AnimationSpec`，它可以将任何其他动画规范（如 `tween` 或
+    `keyframes`）包装成一个无限循环的动画。这对于创建持续的背景效果或加载指示器非常有用。</string>
+    <string name="withInfinityRepeatable_details">（1）无限重复动画是什么？\n\n它是一种一旦启动就不会自动停止的动画。你可以控制它的重复模式，例如
+    `RepeatMode.Restart`（每次从头开始）或 `RepeatMode.Reverse`（来回反转）。\n\n（2）它是如何工作的？ 使用 `infiniteRepeatable()` 函数包裹一个常规的
+    `AnimationSpec`，例如 `tween(1000)`。 设置 `repeatMode` 参数来定义重复行为。 将这个 `infiniteRepeatable` 规范传递给
+    `animateTo`。\n\n**重要提示**：由于动画是无限的，调用 `animateTo`
+    的协程将永远不会返回（即它会一直挂起），这可能会阻塞后续代码的执行。因此，`Animatable` 通常不用于无限动画，更推荐使用
+    `rememberInfiniteTransition`。</string>
+
+    <!-- withSnap -->
+    <string name="withSnap_shortInfo">`snap` 是一种特殊的 `AnimationSpec`，它会让值的变化瞬间完成，没有任何过渡动画。当你需要立即将一个 Composable
+    更新到新的状态而不需要动画时，可以使用它。</string>
+    <string name="withSnap_details">（1）`snap` 动画规范是什么？\n\n`snap` 的持续时间为0毫秒。当 `animateTo` 使用它时，`Animatable`
+    的值会立即“跳”到目标值，而不是平滑地过渡过去。\n\n（2）它是如何工作的？ 在调用 `animateTo` 函数时，将 `animationSpec` 参数设置为 `snap()`。
+    `animateTo` 挂起函数会立即完成，并且 `animatable.value` 会被更新为目标值。 这在重置动画状态或在不希望有动画的逻辑分支中改变值时非常有用。</string>
+
+    <!-- animateColor -->
+    <string name="animateColor_shortInfo">`rememberInfiniteTransition` 是专门用于创建无限循环动画的 API。通过它的 `animateColor`
+    扩展函数，可以轻松实现一个在多个颜色之间平滑、无限循环过渡的效果，常用于创建闪烁、呼吸或渐变的背景。</string>
+    <string name="animateColor_details">（1）无限过渡是什么？\n\n`rememberInfiniteTransition` 创建一个 transition
+    对象，该对象可以管理一个或多个无限循环的子动画。这些子动画与父 Composable 的生命周期绑定，进入组合时启动，退出时停止。\n\n（2）它是如何工作的？
+    首先，调用 `val infiniteTransition = rememberInfiniteTransition()` 来获取过渡对象。 然后，调用 `infiniteTransition.animateColor()`，并提供
+    `initialValue`（初始颜色）、`targetValue`（目标颜色）和一个 `animationSpec`。 对于无限动画，`animationSpec` 必须是 `infiniteRepeatable`
+    类型。你可以配置其内部的 `tween` 或 `keyframes` 以及 `repeatMode`。 该函数返回一个 `State&lt;Color&gt;` 对象，通过 `by` 委托或 `.value`
+    来读取每一帧的颜色值，并应用到你的组件上。</string>
+
+    <!-- animateFloat -->
+    <string name="animateFloat_shortInfo">`rememberInfiniteTransition` 的 `animateFloat`
+    扩展函数可以创建一个在两个浮点数值之间无限循环的动画。这非常灵活，可以用来驱动尺寸、透明度、旋转角度、位置偏移等多种视觉属性的持续变化。</string>
+    <string name="animateFloat_details">（1）无限浮点值动画是什么？\n\n它是一个由 `rememberInfiniteTransition` 管理的、在 `initialValue` 和
+    `targetValue` 之间不断变化的浮点值。你可以用这个值来控制任何接受 `Float` 类型参数的 Modifier。\n\n（2）它是如何工作的？ 与 `animateColor`
+    类似，先获取 `rememberInfiniteTransition()` 对象。 调用 `infiniteTransition.animateFloat()`，并提供
+    `initialValue`（初始值）、`targetValue`（目标值）和一个 `infiniteRepeatable` 动画规范。 该函数返回一个 `State&lt;Float&gt;`
+    对象。你可以读取它的值，并根据需要附加单位（如 `.dp`），然后将其传递给 `Modifier.size()`、`Modifier.alpha()` 等。</string>
+
 </resources>
