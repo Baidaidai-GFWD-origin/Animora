@@ -35,7 +35,6 @@ object infiniteTransition {
             )
         )
         Column {
-            Text("infiniteTransition.animateColor")
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -61,7 +60,6 @@ object infiniteTransition {
 
         )
         Column {
-            Text("infiniteTransition.animateValue")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = size.dp)

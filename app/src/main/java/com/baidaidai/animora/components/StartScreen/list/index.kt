@@ -4,14 +4,20 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -27,6 +33,7 @@ import androidx.navigation.NavController
 import com.baidaidai.animora.LocalAnimationViewModel
 import com.baidaidai.animora.components.StartScreen.list.components.animationListItem
 import com.baidaidai.animora.components.StartScreen.list.components.modalBottomSheet
+import com.baidaidai.animora.components.StartScreen.list.components.principledHeader
 import com.baidaidai.animora.components.StartScreen.list.model.animationList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -64,7 +71,6 @@ fun animationListContainer(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)
             .padding(contentPaddingValues)
-            .padding(start = 20.dp, end = 20.dp)
             .blur(blurValue)
     ) {
         LazyColumn {
@@ -74,9 +80,10 @@ fun animationListContainer(
                     animationList.id
                 }
             ) { animationList->
+                principledHeader(animationList)
                 Column(
                     modifier = Modifier
-                        .padding(bottom = 5.dp)
+                        .padding(start = 20.dp, end = 20.dp)
                 ) {
                     animationListItem(
                         animationList = animationList,
@@ -94,11 +101,6 @@ fun animationListContainer(
                                 modalBottomSheetState.show()
                             }
                         }
-                    )
-                    HorizontalDivider(
-                        thickness = 1.dp,
-                        modifier = Modifier
-                            .padding(horizontal = 10.dp)
                     )
                 }
             }

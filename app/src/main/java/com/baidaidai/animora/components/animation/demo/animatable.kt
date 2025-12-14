@@ -28,10 +28,10 @@ import kotlinx.coroutines.delay
 object animatable {
 
     @Composable
-    fun AnimateTo(blueState: MutableState<Boolean>){
+    fun AnimateTo(blueState: Boolean){
         var alphaValue = remember { Animatable(1f) }
-        LaunchedEffect(blueState.value) {
-            if (blueState.value){
+        LaunchedEffect(blueState) {
+            if (blueState){
                 alphaValue.animateTo(0.5f)
                 delay(1000)
                 alphaValue.animateTo(0f)
@@ -40,7 +40,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(alpha)异步Async")
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -52,10 +51,10 @@ object animatable {
     }
 
     @Composable
-    fun withMediumSpringSpec(blueState: MutableState<Boolean>){
+    fun withMediumSpringSpec(blueState: Boolean){
         var widthValue = remember { Animatable(100f) }
-        LaunchedEffect(blueState.value) {
-            if (blueState.value){
+        LaunchedEffect(blueState) {
+            if (blueState){
                 widthValue.animateTo(
                     targetValue = 50f,
                     animationSpec = spring(
@@ -82,7 +81,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With SpringSpec")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp,width = widthValue.value.dp)
@@ -93,15 +91,14 @@ object animatable {
     }
 
     @Composable
-    fun withDIYBezier(blueState: MutableState<Boolean>){
+    fun withDIYBezier(blueState: Boolean){
         var widthValue = remember { Animatable(100f) }
-        LaunchedEffect(blueState.value) {
-            // 移除 <Float> 泛型
+        LaunchedEffect(blueState) {
             val animSpec = tween<Float>(
                 durationMillis = 1000,
                 easing = CubicBezierEasing(1.00f, 0.00f, 0.00f, 1.00f)
             )
-            if (blueState.value){
+            if (blueState){
                 widthValue.animateTo(
                     targetValue = 50f,
                     animationSpec = animSpec
@@ -119,7 +116,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With DIY Bezier")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp,width = widthValue.value.dp)
@@ -130,9 +126,9 @@ object animatable {
     }
 
     @Composable
-    fun withKeyframesSpline(blueState: MutableState<Boolean>) {
+    fun withKeyframesSpline(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
-        LaunchedEffect(blueState.value) {
+        LaunchedEffect(blueState) {
             val animSpec = keyframesWithSpline<Float> {
                 durationMillis = 3000 // 总动画时长
                 50f at 500 using CubicBezierEasing(1.00f, 0.00f, 0.00f, 1.00f)
@@ -140,7 +136,7 @@ object animatable {
                 300f at 3000 using CubicBezierEasing(1.00f, 0.00f, 0.00f, 1.00f)
             }
 
-            if (blueState.value) {
+            if (blueState) {
                 widthValue.animateTo(
                     targetValue = 300f, // 最终目标值
                     animationSpec = animSpec
@@ -153,7 +149,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With KeyframesSpline & Bezier")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)
@@ -164,11 +159,11 @@ object animatable {
     }
 
     @Composable
-    fun withInfinityRepeatable(blueState: MutableState<Boolean>) {
+    fun withInfinityRepeatable(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
 
-        LaunchedEffect(blueState.value) {
-            if (blueState.value) {
+        LaunchedEffect(blueState) {
+            if (blueState) {
                 widthValue.animateTo(
                     targetValue = 300f,
                     animationSpec = infiniteRepeatable(
@@ -189,7 +184,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable with InfinityRepeatable")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)
@@ -200,11 +194,11 @@ object animatable {
     }
 
     @Composable
-    fun withSnap(blueState: MutableState<Boolean>) {
+    fun withSnap(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
 
-        LaunchedEffect(blueState.value) {
-            if (blueState.value) {
+        LaunchedEffect(blueState) {
+            if (blueState) {
                 widthValue.animateTo(
                     targetValue = 300f,
                     animationSpec = snap()
@@ -217,7 +211,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable with SnapSpec")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)

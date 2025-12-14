@@ -63,7 +63,7 @@ fun infoAreaContainer(){
                     Text("Version")
                 },
                 supportingContent = {
-                    Text("0.9.6-beta")
+                    Text("1.0.0-alpha")
                 },
                 leadingContent = {
                     Icon(
