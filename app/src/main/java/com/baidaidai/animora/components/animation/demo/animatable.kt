@@ -40,7 +40,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(alpha)异步Async")
             Box(
                 modifier = Modifier
                     .size(100.dp)
@@ -82,7 +81,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With SpringSpec")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp,width = widthValue.value.dp)
@@ -118,7 +116,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With DIY Bezier")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp,width = widthValue.value.dp)
@@ -152,7 +149,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable.animateTo(width) With KeyframesSpline & Bezier")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)
@@ -188,7 +184,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable with InfinityRepeatable")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)
@@ -216,7 +211,6 @@ object animatable {
             }
         }
         Column {
-            Text("Animatable with SnapSpec")
             Box(
                 modifier = Modifier
                     .size(height = 100.dp, width = widthValue.value.dp)
