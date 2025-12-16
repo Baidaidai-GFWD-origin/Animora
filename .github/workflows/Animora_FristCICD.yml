@@ -1,21 +1,27 @@
-name: Android CI
+name: Animora CI (MVP)
 
 on:
   push:
     branches: [ main ]
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-java@v4
+      - name: Setup JDK 17 + Gradle cache
+        uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
+          cache: gradle
 
-      - run: chmod +x gradlew
+      - name: Grant execute permission
+        run: chmod +x gradlew
 
-      - run: ./gradlew assembleRelease
+      - name: Build Debug APK (MVP)
+        run: ./gradlew assembleDebug --no-daemon
