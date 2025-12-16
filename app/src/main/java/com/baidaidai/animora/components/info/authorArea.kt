@@ -1,5 +1,6 @@
 package com.baidaidai.animora.components.info
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,7 +18,10 @@ import androidx.compose.ui.unit.dp
 import com.baidaidai.animora.R
 
 @Composable
-fun authorAreaContainer(){
+fun authorAreaContainer(
+    onClickGithub:()-> Unit,
+    onClickTwitter: () -> Unit
+){
     OutlinedCard {
         Column {
             Text(
@@ -52,7 +56,9 @@ fun authorAreaContainer(){
                             .size(24.dp)
                             .padding(2.dp)
                     )
-                }
+                },
+                modifier = Modifier
+                    .clickable(onClick = onClickTwitter)
             )
             ListItem(
                 headlineContent = {
@@ -66,7 +72,9 @@ fun authorAreaContainer(){
                             .size(24.dp)
                             .padding(2.dp)
                     )
-                }
+                },
+                modifier = Modifier
+                    .clickable(onClick = onClickGithub)
             )
         }
     }
