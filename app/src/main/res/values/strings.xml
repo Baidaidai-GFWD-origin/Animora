@@ -98,4 +98,7 @@
     `initialValue`（初始值）、`targetValue`（目标值）和一个 `infiniteRepeatable` 动画规范。 该函数返回一个 `State&lt;Float&gt;`
     对象。你可以读取它的值，并根据需要附加单位（如 `.dp`），然后将其传递给 `Modifier.size()`、`Modifier.alpha()` 等。</string>
 
+    <string name="creater_note">这是我学习 Jetpack Compose 过程中的最终作品，用于练习 Compose 语法、Android 开发，并记录那些容易被遗忘的动画 API✨\n\n如果这个 App 对你有所帮助，欢迎在 GitHub 点个 ⭐️!\n\n祝你在 Android 的旅程中，始终保持灵感与热爱🚀\n\nCreater. Bai\n2025.12.16</string>
+    <string name="project_github">https\:\/\/github.com\/Baidaidai-GFWD-origin\/Animora</string>
+
 </resources>
