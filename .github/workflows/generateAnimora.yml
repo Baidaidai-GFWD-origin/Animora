@@ -1,5 +1,7 @@
 name: Animora CI
 
+run-name: "Building Animora APK"
+
 on:
   push:
     branches:
