@@ -2,15 +2,25 @@ package com.baidaidai.animora.components.StartScreen
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.animation.core.animateDpAsState
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
+import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.baidaidai.animora.InfoActivity
 import com.baidaidai.animora.components.StartScreen.home.homeScreenComtainer
 import com.baidaidai.animora.components.StartScreen.list.animationListContainer
+import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
 import com.baidaidai.animora.shared.components.NecessaryComponents
+import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 
 @Composable
 fun startScreenContainer(
@@ -19,6 +29,12 @@ fun startScreenContainer(
     totalNavigationController: NavHostController
 ){
     val intent = Intent(context,InfoActivity::class.java)
+
+    val homeScreenBlurViewModel = viewModel<homeScreenBlurViewModel>()
+    val blurStatus by homeScreenBlurViewModel.blurStatus.collectAsState()
+    val blurValue by animateDpAsState(
+        targetValue = if (blurStatus) 10.dp else 0.dp
+    )
 
     Scaffold(
         topBar = {
@@ -30,9 +46,10 @@ fun startScreenContainer(
             NecessaryComponents.homeButtomBar(
                 controller = homeViewNavController
             )
-        }
+        },
+        modifier = Modifier
+            .blur(blurValue)
     ) { contentPadding ->
-
         NavHost(
             navController = homeViewNavController,
             startDestination = "Home",
@@ -50,6 +67,7 @@ fun startScreenContainer(
                 animationListContainer(
                     contentPaddingValues = contentPadding,
                     navController = totalNavigationController,
+                    viewModel = homeScreenBlurViewModel
                 )
             }
         }

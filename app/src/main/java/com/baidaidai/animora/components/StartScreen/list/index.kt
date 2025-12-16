@@ -35,6 +35,7 @@ import com.baidaidai.animora.components.StartScreen.list.components.animationLis
 import com.baidaidai.animora.components.StartScreen.list.components.modalBottomSheet
 import com.baidaidai.animora.components.StartScreen.list.components.principledHeader
 import com.baidaidai.animora.components.StartScreen.list.model.animationList
+import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -43,16 +44,14 @@ import kotlinx.coroutines.launch
 fun animationListContainer(
     contentPaddingValues: PaddingValues,
     navController: NavController,
+    viewModel: homeScreenBlurViewModel
 ){
 
     val animationDatasViewModel = LocalAnimationViewModel.current
     var bottomSheetState by rememberSaveable { mutableStateOf(false) }
     val modalBottomSheetState = rememberModalBottomSheetState()
     val coroutineScope = rememberCoroutineScope()
-
-    val blurValue by animateDpAsState(
-        targetValue = if (bottomSheetState) 10.dp else 0.dp
-    )
+    val homeScreenBlurViewModel = viewModel
 
     @StringRes
     var bottomSheetContent: Int by rememberSaveable { mutableIntStateOf(0) }
@@ -62,6 +61,7 @@ fun animationListContainer(
             onDismissRequest = {
                 modalBottomSheetState.hide()
                 bottomSheetState = !bottomSheetState
+                homeScreenBlurViewModel.changeBlurStatus(bottomSheetState)
             },
             modalBottomSheetState = modalBottomSheetState,
             bottomSheetContent = bottomSheetContent
@@ -71,7 +71,6 @@ fun animationListContainer(
         modifier = Modifier
             .background(color = MaterialTheme.colorScheme.background)
             .padding(contentPaddingValues)
-            .blur(blurValue)
     ) {
         LazyColumn {
             items(
@@ -97,6 +96,7 @@ fun animationListContainer(
                             bottomSheetContent = animationList.shortInfo
                             coroutineScope.launch {
                                 bottomSheetState = !bottomSheetState
+                                homeScreenBlurViewModel.changeBlurStatus(bottomSheetState)
                                 delay(500)
                                 modalBottomSheetState.show()
                             }
