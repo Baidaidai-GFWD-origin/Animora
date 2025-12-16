@@ -69,7 +69,9 @@ fun infoAreaContainer(
                     Text("Version")
                 },
                 supportingContent = {
-                    Text("1.0.0-alpha")
+                    Text(
+                        text = stringResource(R.string.app_version_local)
+                    )
                 },
                 leadingContent = {
                     Icon(
