@@ -1,6 +1,7 @@
 package com.baidaidai.animora.components.animation.detail
 
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Animation
@@ -54,8 +55,11 @@ final object NecessaryComponents {
             text = { Text(text = "Start Animation") },
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-            modifier = Modifier.Companion
-                .padding(bottom = 50.dp)
+            modifier = Modifier
+                .offset(
+                    y = (-10).dp,
+                    x = (-15).dp
+                )
         )
     }
 }
