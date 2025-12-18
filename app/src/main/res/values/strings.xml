@@ -4,99 +4,51 @@
 
     <!-- animateColorAsState -->
     <string name="animateColorAsState_shortInfo">这个动画根据 blueState 的布尔值变化，在红色与灰色之间平滑过渡，并实时更新 Box 的背景色。\n\n它是一个最基础、最轻量的 颜色过渡动画（Color Transition Animation），适用于状态变化时快速给用户一个自然的视觉反馈。</string>
-    <string name="animateColorAsState_details">（1）animateColorAsState 是什么？\n\n它是 Compose 官方提供的 单值动画 API（Single-Value Animation），更类似于一个 “自动补间器”：\n\t•\t输入：目标值 targetValue\n\t•\t输出：一个不断更新的动画值 color\n\t•\t生命周期：当目标值变化，动画开始；当动画完成，值稳定在目标上\n\n（2）它做了哪些事情？\n\t•\t比较新旧 targetValue\n\t•\t自动创建一个 Color 的插值动画（ArgbEvaluator）\n\t•\t在 300ms（默认）内平滑过渡颜色\n\t•\t根据帧率不停更新 composable\n\t•\t直到颜色抵达新的目标值\n\n你不用自己写动画时间，不用写插值器，不用写逐帧逻辑，Compose 全部帮你处理。</string>
 
     <!-- animateContentSize -->
     <string name="animateContentSize_shortInfo">当一个组件的尺寸因内容或状态改变时，这个 Modifier 会自动为其尺寸变化添加平滑的动画过渡效果。\n\n它非常适合用于可展开/折叠的卡片、动态文本块等场景，避免尺寸突变带来的生硬感。</string>
-    <string name="animateContentSize_details">（1）animateContentSize 是什么？\n\n它是一个 Modifier（修饰符），你可以将它应用到任何 Composable 上。它的作用是观察并响应这个 Composable 的目标尺寸变化。\n\n（2）它做了哪些事情？\n\t•\t监听 Composable 的目标尺寸（宽度或高度）何时发生变化。\n\t•\t当变化发生时，它会阻止立即的、跳跃式的尺寸更新。\n\t•\t取而代之，它会自动创建一个 SizeAnimation（尺寸动画）。\n\t•\t这个动画会在一个短暂的时间内，平滑地将尺寸从旧值插值到新值。\n\t•\t这使得尺寸的增长或收缩看起来非常流畅和自然。</string>
 
     <!-- animateContentVisibility -->
     <string name="animateContentVisibility_shortInfo">通过一个布尔值来控制其子内容的出现和消失，并在此过程中应用指定的进入（Enter）和退出（Exit）动画。\n\n你可以用它轻松实现元素的淡入淡出、滑动进入/退出等效果，是控制UI元素显隐的理想选择。</string>
-    <string name="animateContentVisibility_details">（1）AnimatedVisibility 是什么？\n\n它是一个容器 Composable，你将需要控制显隐的UI元素包裹在其中。它最关键的参数是 `visible: Boolean`。\n\n（2）它做了哪些事情？\n\t•\t当 `visible` 的状态从 `false` 变为 `true` 时，它会执行你定义的 `enter` 过渡动画（例如 `fadeIn()` 或 `slideInVertically()`），让内容优雅地出现。\n\t•\t当 `visible` 的状态从 `true` 变为 `false` 时，它会执行 `exit` 过渡动画（例如 `fadeOut()` 或 `slideOutHorizontally()`），让内容平滑地消失。\n\t•\t在动画执行期间，它负责管理 Composable 在组件树中的添加与移除，你只需要关心状态即可。</string>
 
     <!-- animateOpacityAsState -->
     <string name="animateOpacityAsState_shortInfo">这是一个专门用于处理透明度（Alpha）的单值动画。它根据状态变化，在两个浮点数值之间平滑过渡，常用于实现组件的淡入淡出效果。\n\n和 animateColorAsState 类似，它也是一个轻量级的“即发即忘”式动画。</string>
-    <string name="animateOpacityAsState_details">（1）animateFloatAsState 是什么？\n\n它是 `animate*AsState` 家族的一员，专门处理 `Float` 类型的数值动画。在这个例子中，我们用它来驱动透明度（alpha），其取值范围是 0.0f (完全透明) 到 1.0f (完全不透明)。\n\n（2）它做了哪些事情？\n\t•\t接收一个目标浮点值 `targetValue`。\n\t•\t当 `targetValue` 改变时，它会自动创建一个从当前值到目标值的插值动画。\n\t•\t它返回一个 `State&lt;Float&gt;` 对象，该对象的值在动画的每一帧都会更新。\n\t•\t将这个返回的 alpha 值应用到 `Modifier.alpha()` 中，就能让 Composable 随着值的变化而重绘，从而产生平滑的淡入淡出效果。</string>
 
     <!-- shareTransition -->
     <string name="shareTransition_shortInfo">共享元素过渡（Shared Element Transition）可以在两个不同的布局状态之间，为一个或多个共享的组件创建连贯的、魔法般的移动和形变动画。\n\n它极大地提升了用户体验，尤其是在导航场景中（如从列表页到详情页），能帮助用户清晰地感知元素的来龙去脉。</string>
-    <string name="shareTransition_details">（1）共享元素过渡是什么？\n\n它是一种高级动画技术，用于连接两个视觉上不同、但概念上相同的UI元素。它让用户感觉元素是从一个地方“飞”并变换到另一个地方，而不是一个消失、另一个出现。\n\n（2）它是如何工作的？\n\t•\t首先，用 `SharedTransitionLayout` 包裹住包含起始和结束两种状态的父 Composable。\n\t•\t然后，在 `AnimatedContent` 提供的作用域内，使用 `Modifier.sharedElement()` 为起始和结束位置的同一个元素打上相同的唯一 `key`。\n\t•\tCompose 会自动计算这两个元素在位置、尺寸、形状等方面的差异。\n\t•\t最后，它会生成一个平滑的过渡动画，来模拟元素从起点到终点的变换过程。`Modifier.sharedBounds` 则常用于同步容器（如边框）的变换。</string>
 
     <!-- updateTransition -->
     <string name="updateTransition_shortInfo">这是一个功能强大的动画协调器。当你的UI需要根据单一状态（如 `Expanded`/`Collapsed`）同时改变多个属性（如颜色、尺寸、圆角）时，`updateTransition` 可以确保所有这些动画同步开始、协同执行。\n\n它是处理复杂、多属性、状态驱动动画的首选方案。</string>
-    <string name="updateTransition_details">（1）updateTransition 是什么？\n\n它是一个基于状态的过渡 API。你向它提供一个目标状态（`targetState`），它会返回一个 `Transition` 对象。这个对象就像一个动画的“总指挥”。\n\n（2）它做了哪些事情？\n\t•\t与 `animate*AsState` 只能驱动单个值不同，`updateTransition` 用于协调多个动画。\n\t•\t拿到 `Transition` 对象后，你可以调用其扩展函数，如 `transition.animateColor()`、`transition.animateDp()` 等，为每一个你想动的属性创建一个子动画。\n\t•\t当你提供给 `updateTransition` 的 `targetState` 发生变化时，“总指挥”会立即命令所有子动画同时开始。\n\t•\t这保证了所有视觉变化都是同步的，你甚至可以为每个子动画指定不同的动画规格（如时长、缓动曲线），创造出丰富而协调的动态效果。</string>
 
     <!-- animatable -->
-    <string name="AnimateTo_shortInfo">`Animatable` 是一个功能强大的、基于协程的 API，用于对单个值（如 `Float`, `Color`, `Dp` 等）进行动画。与
-    `animate*AsState` 不同，它提供了更精细的控制能力，尤其适合处理手势驱动或需要中断和重启的复杂动画场景。</string>
-    <string name="AnimateTo_details">（1）`Animatable` 是什么？\n\n它是一个值的容器，可以通过 `animateTo`
-    等挂起函数来改变其值。由于其操作位于协程中，因此可以完全控制动画的启动、停止和顺序，实现复杂的动画逻辑。\n\n（2）它是如何工作的？ 首先，使用
-    `remember { Animatable(initialValue) }` 创建并记住一个 `Animatable` 实例。 在 `LaunchedEffect` 或其他协程作用域中，调用
-    `animatable.animateTo(targetValue)` 来启动一个从当前值到目标值的动画。这是一个挂起函数，会等待动画完成后再继续执行后续代码。 通过访问
-    `animatable.value` 来获取当前值，并将其应用于 Modifier（如 `Modifier.alpha(animatable.value)`)。</string>
+    <string name="AnimateTo_shortInfo">`Animatable` 是一个功能强大的、基于协程的 API，用于对单个值（如 `Float`, `Color`, `Dp` 等）进行动画。\n\n与`animate*AsState` 不同，它提供了更精细的控制能力，尤其适合处理手势驱动或需要中断和重启的复杂动画场景。</string>
 
     <!-- withMediumSpringSpec -->
-    <string name="withMediumSpringSpec_shortInfo">通过为 `Animatable.animateTo` 提供 `spring`
-    动画规范（`AnimationSpec`），可以轻松创建出符合物理规律的弹簧动画效果，让组件的运动看起来更自然、生动。</string>
-    <string name="withMediumSpringSpec_details">（1）弹簧动画规范是什么？\n\n`spring` 是一种
-    `AnimationSpec`，它模拟物理世界中的弹簧行为。你可以通过调整 `dampingRatio`（阻尼比）和
-    `stiffness`（刚度）来控制弹簧的“弹性”和“回弹”效果。\n\n（2）它是如何工作的？ 创建一个 `spring` 实例，例如 `spring(dampingRatio =
-    Spring.DampingRatioMediumBouncy, stiffness = Spring.StiffnessMedium)`。 在调用 `animateTo` 函数时，将这个 `spring` 实例作为 `animationSpec`
-    参数传入。 Compose 会根据弹簧的物理模型计算出值在每一帧的变化，从而产生一个非线性的、富有活力的动画。常见的 `dampingRatio` 包括
-    `HighBouncy`（高弹性）、`MediumBouncy`（中等弹性）、`LowBouncy`（低弹性）和 `NoBouncy`（无弹性）。</string>
+    <string name="withMediumSpringSpec_shortInfo">通过为 `Animatable.animateTo` 提供 `spring`动画规范（`AnimationSpec`），可以轻松创建出符合物理规律的弹簧动画效果，让组件的运动看起来更自然、生动。</string>
 
     <!-- withDIYBezier -->
     <string name="withDIYBezier_shortInfo">使用 `tween` 结合自定义的
     `CubicBezierEasing`（三次贝塞尔缓动曲线），可以精确控制动画在时间上的速度变化，实现从“慢-快-慢”到“快-慢”等各种高度定制化的缓动效果。</string>
-    <string name="withDIYBezier_details">（1）自定义贝塞尔缓动是什么？\n\n它允许你通过定义一个三次贝塞尔曲线的两个控制点来创建一个自定义的
-    `Easing`。通过调整这两个点的位置，你可以设计出任意形状的速度曲线。\n\n（2）它是如何工作的？ 创建一个 `CubicBezierEasing(x1, y1, x2, y2)`
-    实例，这四个参数定义了两个控制点的坐标。 将这个 `easing` 对象传入 `tween` 动画规范中，如 `tween(durationMillis = 1000, easing = myEasing)`。
-    最后，将此 `tween` 作为 `animationSpec` 应用于 `animateTo` 函数。动画将严格按照你设计的速度曲线进行插值。</string>
 
     <!--withKeyframesSpline-->
-    <string name="withKeyframesSpline_shortInfo">`keyframes`（关键帧）动画允许你将一个动画过程分解为多个阶段，并为每个阶段指定目标值和持续时间。这对于创建复杂的
+    <string name="withKeyframesSpline_shortInfo">`keyframes`（关键帧）动画允许你将一个动画过程分解为多个阶段，并为每个阶段指定目标值和持续时间。\n\n这对于创建复杂的
     、多步骤的动画序列非常有用，例如模拟一个物体先加速后减速再停止的运动。</string>
-    <string name="withKeyframesSpline_details">（1）关键帧动画是什么？\n\n它是一种定义动画的方式，你只需要在时间轴上的特定“关键”点设置属性值，系统会自动在这些点
-    之间创建平滑的过渡。你还可以为每个过渡区间指定不同的缓动曲线（`Easing`）。\n\n（2）它是如何工作的？ 使用 `keyframes` 或 `keyframesWithSpline`
-    构建器来定义动画规范。 在构建器内部，使用 `targetValue at timestamp` 的语法来定义在某个时间点（毫秒）动画值应该达到什么状态。例如 `150f at 2000`
-    表示在第2000毫秒时，值应为150f。 你可以使用 `using (easing)` 为两个关键帧之间的过渡指定一个缓动曲线。 将这个 `keyframes` 规范传入 `animateTo`
-    函数，动画就会按照你设定的剧本上演。</string>
 
     <!--withInfinityRepeatable-->
     <string name="withInfinityRepeatable_shortInfo">`infiniteRepeatable` 是一个特殊的 `AnimationSpec`，它可以将任何其他动画规范（如 `tween` 或
     `keyframes`）包装成一个无限循环的动画。这对于创建持续的背景效果或加载指示器非常有用。</string>
-    <string name="withInfinityRepeatable_details">（1）无限重复动画是什么？\n\n它是一种一旦启动就不会自动停止的动画。你可以控制它的重复模式，例如
-    `RepeatMode.Restart`（每次从头开始）或 `RepeatMode.Reverse`（来回反转）。\n\n（2）它是如何工作的？ 使用 `infiniteRepeatable()` 函数包裹一个常规的
-    `AnimationSpec`，例如 `tween(1000)`。 设置 `repeatMode` 参数来定义重复行为。 将这个 `infiniteRepeatable` 规范传递给
-    `animateTo`。\n\n**重要提示**：由于动画是无限的，调用 `animateTo`
-    的协程将永远不会返回（即它会一直挂起），这可能会阻塞后续代码的执行。因此，`Animatable` 通常不用于无限动画，更推荐使用
-    `rememberInfiniteTransition`。</string>
 
     <!-- withSnap -->
-    <string name="withSnap_shortInfo">`snap` 是一种特殊的 `AnimationSpec`，它会让值的变化瞬间完成，没有任何过渡动画。当你需要立即将一个 Composable
+    <string name="withSnap_shortInfo">`snap` 是一种特殊的 `AnimationSpec`，它会让值的变化瞬间完成，没有任何过渡动画。\n\n当你需要立即将一个 Composable
     更新到新的状态而不需要动画时，可以使用它。</string>
-    <string name="withSnap_details">（1）`snap` 动画规范是什么？\n\n`snap` 的持续时间为0毫秒。当 `animateTo` 使用它时，`Animatable`
-    的值会立即“跳”到目标值，而不是平滑地过渡过去。\n\n（2）它是如何工作的？ 在调用 `animateTo` 函数时，将 `animationSpec` 参数设置为 `snap()`。
-    `animateTo` 挂起函数会立即完成，并且 `animatable.value` 会被更新为目标值。 这在重置动画状态或在不希望有动画的逻辑分支中改变值时非常有用。</string>
 
     <!-- animateColor -->
-    <string name="animateColor_shortInfo">`rememberInfiniteTransition` 是专门用于创建无限循环动画的 API。通过它的 `animateColor`
+    <string name="animateColor_shortInfo">`rememberInfiniteTransition` 是专门用于创建无限循环动画的 API。\n\n通过它的 `animateColor`
     扩展函数，可以轻松实现一个在多个颜色之间平滑、无限循环过渡的效果，常用于创建闪烁、呼吸或渐变的背景。</string>
-    <string name="animateColor_details">（1）无限过渡是什么？\n\n`rememberInfiniteTransition` 创建一个 transition
-    对象，该对象可以管理一个或多个无限循环的子动画。这些子动画与父 Composable 的生命周期绑定，进入组合时启动，退出时停止。\n\n（2）它是如何工作的？
-    首先，调用 `val infiniteTransition = rememberInfiniteTransition()` 来获取过渡对象。 然后，调用 `infiniteTransition.animateColor()`，并提供
-    `initialValue`（初始颜色）、`targetValue`（目标颜色）和一个 `animationSpec`。 对于无限动画，`animationSpec` 必须是 `infiniteRepeatable`
-    类型。你可以配置其内部的 `tween` 或 `keyframes` 以及 `repeatMode`。 该函数返回一个 `State&lt;Color&gt;` 对象，通过 `by` 委托或 `.value`
-    来读取每一帧的颜色值，并应用到你的组件上。</string>
 
     <!-- animateFloat -->
     <string name="animateFloat_shortInfo">`rememberInfiniteTransition` 的 `animateFloat`
-    扩展函数可以创建一个在两个浮点数值之间无限循环的动画。这非常灵活，可以用来驱动尺寸、透明度、旋转角度、位置偏移等多种视觉属性的持续变化。</string>
-    <string name="animateFloat_details">（1）无限浮点值动画是什么？\n\n它是一个由 `rememberInfiniteTransition` 管理的、在 `initialValue` 和
-    `targetValue` 之间不断变化的浮点值。你可以用这个值来控制任何接受 `Float` 类型参数的 Modifier。\n\n（2）它是如何工作的？ 与 `animateColor`
-    类似，先获取 `rememberInfiniteTransition()` 对象。 调用 `infiniteTransition.animateFloat()`，并提供
-    `initialValue`（初始值）、`targetValue`（目标值）和一个 `infiniteRepeatable` 动画规范。 该函数返回一个 `State&lt;Float&gt;`
-    对象。你可以读取它的值，并根据需要附加单位（如 `.dp`），然后将其传递给 `Modifier.size()`、`Modifier.alpha()` 等。</string>
+    扩展函数可以创建一个在两个浮点数值之间无限循环的动画。\n\n这非常灵活，可以用来驱动尺寸、透明度、旋转角度、位置偏移等多种视觉属性的持续变化。</string>
 
     <string name="creater_note">这是我学习 Jetpack Compose 过程中的最终作品，用于练习 Compose 语法、Android 开发，并记录那些容易被遗忘的动画 API✨\n\n如果这个 App 对你有所帮助，欢迎在 GitHub 点个 ⭐️!\n\n祝你在 Android 的旅程中，始终保持灵感与热爱🚀\n\nCreater. Bai\n2025.12.16</string>
     <string name="project_github">https\:\/\/github.com\/Baidaidai-GFWD-origin\/Animora</string>
