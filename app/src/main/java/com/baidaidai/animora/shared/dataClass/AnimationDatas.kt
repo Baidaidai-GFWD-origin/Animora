@@ -8,7 +8,6 @@ final data class AnimationDatas(
     val name: String,
     @StringRes
     val shortInfo: Int,
-    @StringRes
-    val details: Int,
+    val details: String,
     val animationFiles:@Composable (Boolean) -> Unit
 )

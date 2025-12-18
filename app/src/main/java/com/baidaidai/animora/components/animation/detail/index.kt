@@ -19,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavController
 import com.baidaidai.animora.LocalAnimationViewModel
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
+import dev.jeziellago.compose.markdowntext.MarkdownText
 
 @Composable
 fun animationDetailContainer(
@@ -36,6 +38,10 @@ fun animationDetailContainer(
 
     val blueState by blueStateViewModel.blueState.collectAsState()
     val animationDatas by animationDatasViewModel.selectedAnimation.collectAsState()
+
+    val assetsManager = LocalContext.current.assets
+    var inputStream = assetsManager.open(animationDatas.details)
+    var markdownContent = inputStream.bufferedReader().use { it.readText() }
 
     Scaffold(
         topBar = {
@@ -88,9 +94,7 @@ fun animationDetailContainer(
                         end = 5.dp
                     )
             )
-            Text(
-                text = stringResource(animationDatas.details)
-            )
+            MarkdownText(markdown = markdownContent)
         }
     }
 }
