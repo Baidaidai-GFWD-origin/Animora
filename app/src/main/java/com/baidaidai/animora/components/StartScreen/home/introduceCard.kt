@@ -1,6 +1,7 @@
 package com.baidaidai.animora.components.StartScreen.home
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -61,7 +62,12 @@ fun introduceCard(){
                     )
                 }
             }
-            HorizontalDivider(thickness = 1.dp)
+            HorizontalDivider(
+                thickness = 1.dp,
+                color = MaterialTheme.colorScheme.onPrimaryContainer,
+                modifier = Modifier
+                    .padding(horizontal = 10.dp)
+            )
             Column(
                 modifier = Modifier
                     .padding(top = 10.dp, start = 10.dp, end = 10.dp)

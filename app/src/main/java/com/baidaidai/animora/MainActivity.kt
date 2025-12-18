@@ -2,9 +2,11 @@ package com.baidaidai.animora
 
 import android.app.Activity
 import android.os.Bundle
+import android.view.WindowInsetsController
 import android.window.SplashScreen
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.*
@@ -18,7 +20,9 @@ import com.baidaidai.animora.components.animation.detail.animationDetailContaine
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.baidaidai.animora.shared.viewModel.animationDatasViewModel
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalView
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import com.baidaidai.animora.components.StartScreen.startScreenContainer
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 import com.google.android.material.color.DynamicColors
@@ -34,6 +38,7 @@ class MainActivity : ComponentActivity() {
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContent {
             TestAppTheme {
                 val animationDetailsViewModel = viewModel<animationDatasViewModel>()
