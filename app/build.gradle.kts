@@ -14,7 +14,7 @@ android {
         minSdk = 24
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0.1-alpha"
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -72,5 +72,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics:1.9.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.9.0")
     implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("com.github.jeziellago:compose-markdown:0.5.8")
 
 }

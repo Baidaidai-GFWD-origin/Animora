@@ -100,6 +100,6 @@
 
     <string name="creater_note">这是我学习 Jetpack Compose 过程中的最终作品，用于练习 Compose 语法、Android 开发，并记录那些容易被遗忘的动画 API✨\n\n如果这个 App 对你有所帮助，欢迎在 GitHub 点个 ⭐️!\n\n祝你在 Android 的旅程中，始终保持灵感与热爱🚀\n\nCreater. Bai\n2025.12.16</string>
     <string name="project_github">https\:\/\/github.com\/Baidaidai-GFWD-origin\/Animora</string>
-    <string name="app_version_local">1.0.1-beta</string>
+    <string name="app_version_local">1.1.0</string>
 
 </resources>
