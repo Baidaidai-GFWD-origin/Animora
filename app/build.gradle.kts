@@ -72,5 +72,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics:1.9.0")
     implementation("androidx.compose.ui:ui-tooling-preview:1.9.0")
     implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("com.github.jeziellago:compose-markdown:0.5.8")
 
 }
