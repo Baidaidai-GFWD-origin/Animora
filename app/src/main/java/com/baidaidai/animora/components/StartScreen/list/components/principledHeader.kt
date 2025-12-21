@@ -23,7 +23,13 @@ fun principledHeader(
         0 -> {
             Header(content = "animate*AsState Family")
         }
+        4 -> {
+            Header(content = "SharedTransition Family")
+        }
         6 -> {
+            Header(content = "updateTransition Family")
+        }
+        7 -> {
             Header(content = "Animatable Family")
         }
         12 -> {
