@@ -1,11 +1,11 @@
-name: Animora CI
+name: Animora CI/CD
 
-run-name: "Building Animora APK"
+run-name: "Building Animora APK And Release"
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - v*.*.*
 
 jobs:
   build:
@@ -27,3 +27,10 @@ jobs:
 
       - name: Build Debug APK (MVP)
         run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          files: app/build/outputs/apk/debug/app-debug.apk
+          body_path: releases/${{ github.ref_name }}.md
