@@ -14,8 +14,11 @@
     <!-- animateOpacityAsState -->
     <string name="animateOpacityAsState_shortInfo">这是一个专门用于处理透明度（Alpha）的单值动画。它根据状态变化，在两个浮点数值之间平滑过渡，常用于实现组件的淡入淡出效果。\n\n和 animateColorAsState 类似，它也是一个轻量级的“即发即忘”式动画。</string>
 
-    <!-- shareTransition -->
-    <string name="shareTransition_shortInfo">共享元素过渡（Shared Element Transition）可以在两个不同的布局状态之间，为一个或多个共享的组件创建连贯的、魔法般的移动和形变动画。\n\n它极大地提升了用户体验，尤其是在导航场景中（如从列表页到详情页），能帮助用户清晰地感知元素的来龙去脉。</string>
+    <!-- shareBorder -->
+    <string name="shareBorder_shortInfo">共享元素过渡（Shared Element Transition）可以在两个不同的布局状态之间，为一个或多个共享的组件创建连贯的、魔法般的移动和形变动画。\n\n它极大地提升了用户体验，尤其是在导航场景中（如从列表页到详情页），能帮助用户清晰地感知元素的来龙去脉。</string>
+
+    <!-- shareElement -->
+    <string name="shareElement_shortInfo">sharedElement 是 Jetpack Compose 中用于实现共享元素过渡的状态驱动动画 API。\n\n它通过 sharedContentState 为不同状态下的 Composable 绑定统一身份，并结合 AnimatedContent 或 AnimatedVisibility 的作用域，在布局结构、尺寸或位置发生变化时，自动生成连贯、自然的过渡动画，使界面切换更具空间连续性与视觉一致性。</string>
 
     <!-- updateTransition -->
     <string name="updateTransition_shortInfo">这是一个功能强大的动画协调器。当你的UI需要根据单一状态（如 `Expanded`/`Collapsed`）同时改变多个属性（如颜色、尺寸、圆角）时，`updateTransition` 可以确保所有这些动画同步开始、协同执行。\n\n它是处理复杂、多属性、状态驱动动画的首选方案。</string>
