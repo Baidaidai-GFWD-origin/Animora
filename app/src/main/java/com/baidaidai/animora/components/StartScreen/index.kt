@@ -3,7 +3,6 @@ package com.baidaidai.animora.components.StartScreen
 import android.content.Context
 import android.content.Intent
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -20,7 +19,6 @@ import com.baidaidai.animora.components.StartScreen.home.homeScreenComtainer
 import com.baidaidai.animora.components.StartScreen.list.animationListContainer
 import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
 import com.baidaidai.animora.shared.components.NecessaryComponents
-import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 
 @Composable
 fun startScreenContainer(
@@ -58,7 +56,10 @@ fun startScreenContainer(
                 route = "Home"
             ){
                 homeScreenComtainer(
-                    contentPadding = contentPadding
+                    contentPadding = contentPadding,
+                    onlySpringSpecOnClick = {
+                        totalNavigationController.navigate("springStudio")
+                    }
                 )
             }
             composable (

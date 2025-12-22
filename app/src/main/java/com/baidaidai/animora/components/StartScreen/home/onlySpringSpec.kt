@@ -19,10 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun onlySpringSpce(){
+fun onlySpringSpce(
+    onClick: ()-> Unit
+){
     Card(
-        enabled = false,
-        onClick = {},
+        enabled = true,
+        onClick = onClick,
         colors = CardColors(
             containerColor = MaterialTheme.colorScheme.tertiaryContainer,
             contentColor = MaterialTheme.colorScheme.onTertiaryContainer,
@@ -44,7 +46,7 @@ fun onlySpringSpce(){
                 Row {
                     Icon(Icons.Outlined.QuestionMark, contentDescription = "Question LOGO")
                     Text(
-                        text = "Only For SpringSpec? (Pending)",
+                        text = "Only For SpringSpec? (New)",
                         modifier = Modifier
                             .padding(start = 10.dp)
                     )

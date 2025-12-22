@@ -11,7 +11,8 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun homeScreenComtainer(
-    contentPadding: PaddingValues
+    contentPadding: PaddingValues,
+    onlySpringSpecOnClick: ()-> Unit
 ){
     Column(
         modifier = Modifier
@@ -20,6 +21,8 @@ fun homeScreenComtainer(
             .padding(start = 20.dp, end = 20.dp)
     ) {
         introduceCard()
-        onlySpringSpce()
+        onlySpringSpce(
+            onClick = onlySpringSpecOnClick
+        )
     }
 }
