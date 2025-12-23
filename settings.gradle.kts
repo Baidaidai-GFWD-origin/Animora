@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "TestApp"
+rootProject.name = "Animora"
 include(":app")
  

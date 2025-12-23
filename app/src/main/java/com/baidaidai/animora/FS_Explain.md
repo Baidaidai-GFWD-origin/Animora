@@ -31,6 +31,7 @@
         -   `animateContentSize.kt`: `animateContentSize` 的用法示例，用于使组件尺寸变化时产生动画效果。
         -   `animateContentVisibility.kt`: 内容可见性动画示例，可能指 `AnimatedVisibility`。
         -   `animateOpacityAsState.kt`: 透明度动画示例，可能使用 `animateFloatAsState` 实现。
+        -   `shareElement.kt`: 共享元素 (Shared Element) 转场动画的增强版示例。
         -   `shareTransition.kt`: 共享元素转场动画的示例。
         -   `updateTransition.kt`: `updateTransition` 的用法示例，用于管理多个值的状态转换动画。
 
@@ -47,6 +48,22 @@
 -   `infoArea.kt`: 显示应用信息的 Composable 组件。
 -   **`infoScreen/`**:
     -   `NecessaryComponents.kt`: “关于”屏幕所需的辅助或通用组件。
+
+### `components/spring/`
+
+新增的 Spring 动画工作室，提供与 `spring` 动画交互的功能。
+
+-   `index.kt`: Spring 动画工作室页面的主 Composable 函数。
+-   **`animationStudio/`**:
+    -   `index.kt`: 互动式动画工作室的主界面 UI。
+-   **`components/`**:
+    -   `NecessaryComponents.kt`: Spring 工作室所需的辅助或通用组件。
+    -   `buttonGroups.kt`: 用于控制动画参数的按钮组。
+    -   `springSpecStudioController.kt`: Spring 动画规格（如刚度、阻尼比）的交互式控制器。
+-   **`model/`**:
+    -   `index.kt`: Spring 工作室的数据模型。
+    -   **`list/`**:
+        -   `index.kt`: 定义 Spring 动画示例列表的数据。
 
 ### `components/StartScreen/`
 
@@ -71,6 +88,7 @@
 
 -   **`model/`**:
     -   `barItemInside.kt`: 定义底部导航栏项目的数据模型或 Composable。
+    -   `homeScreenBlurViewModel.kt`: 用于管理主屏幕背景模糊效果状态的 `ViewModel`。
 
 ---
 

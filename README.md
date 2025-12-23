@@ -7,12 +7,12 @@ An open source Material Design Animation Textbook and Teaching Equipment
 ## Preview
 
 <p>
-    <img src="/publicAsset/images/AnimoraSplashScreen.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraHomeView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraListView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraInfoActivityView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraListShortInfoView.png" width="32%" />
-    <img src="/publicAsset/images/AnimateColorAsState.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraSplash.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraHome.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraInfo.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraList.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraBlur.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraStudio.png" width="32%" />
 
 </p>
 
@@ -29,11 +29,11 @@ An open source Material Design Animation Textbook and Teaching Equipment
 ## Future planning
 
 - [x] Basic Feature Available
-- [ ] Add necessary SpringSpec API discovery
+- [x] Add necessary SpringSpec API discovery
 - [ ] Add the SliderAPI for better customization
 - [ ] Add sharedTransition API for list view
 - [ ] Add more annotations for the project
-- [ ] Use CI/CD for best practice
+- [x] Use CI/CD for best practice
 - [ ] Upload the application to F-Droid
 - [ ] Upload the application to GooglePlay
 

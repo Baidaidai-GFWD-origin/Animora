@@ -7,12 +7,12 @@
 ## 预览
 
 <p>
-    <img src="/publicAsset/images/AnimoraSplashScreen.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraHomeView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraListView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraInfoActivityView.png" width="32%" />
-    <img src="/publicAsset/images/AnimoraListShortInfoView.png" width="32%" />
-    <img src="/publicAsset/images/AnimateColorAsState.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraSplash.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraHome.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraInfo.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraList.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraBlur.png" width="32%" />
+    <img src="/publicAsset/images/AnimoraStudio.png" width="32%" />
 </p>
 
 ## 功能特性
@@ -28,11 +28,11 @@
 ## 未来规划
 
 - [x] 基础功能已完成
-- [ ] 补充必要的 SpringSpec API 探索
+- [x] 补充必要的 SpringSpec API 探索
 - [ ] 添加 Slider API 以提升自定义能力
 - [ ] 为列表视图引入 SharedTransition API
 - [ ] 为项目补充更多注释与文档说明
-- [ ] 使用 CI/CD 作为最佳实践
+- [x] 使用 CI/CD 作为最佳实践
 - [ ] 将应用发布到 F-Droid
 - [ ] 将应用发布到 Google Play
 
