@@ -4,11 +4,21 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.sizeIn
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Collections
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ButtonGroup
+import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleButton
@@ -20,54 +30,83 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.baidaidai.animora.components.spring.model.list.dampingRatioTabRenderingList
+import com.baidaidai.animora.components.spring.model.list.stiffnessTabRenderingList
+import com.baidaidai.animora.components.spring.model.springSpecStudioViewModel
 import com.baidaidai.animora.components.spring.springSpecSceenContainer
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun springSpecStudioController(){
+fun springSpecStudioController(
+    springSpecStudioViewModel: springSpecStudioViewModel
+){
 
-    var selected by remember { mutableStateOf(0) }
+    var dampingRatioTabSelected by rememberSaveable { mutableStateOf(0) }
+    var stiffNessTabSelected by rememberSaveable { mutableStateOf(0) }
 
-    OutlinedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(300.dp)
-    ) {
-        Column(
-            modifier = Modifier
-                .padding(30.dp)
-        ) {
-            Text("DampingRatio Tab")
-            ButtonGroup(
-                overflowIndicator = {},
-                expandedRatio = 4f,
-//                horizontalArrangement = Arrangement.SpaceAround,
+    var dampingRatioValue by rememberSaveable { mutableFloatStateOf(1f) }
+    var stiffNessValue by rememberSaveable { mutableFloatStateOf(50f) }
+
+
+        Column() {
+            Text(
+                text = "DampingRatio Tab",
+                style = MaterialTheme.typography.titleLarge
+            )
+            Row(
                 modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                toggleableItem(
-                    checked = selected == 0,
-                    label = "0",
-                    onCheckedChange = {
-                        selected = 0
+                    .padding(vertical = 20.dp)
+            ){
+                dampingRatioTabRenderingList.forEachIndexed { index, content ->
+                    toggleButton(
+                        list = dampingRatioTabRenderingList,
+                        index = index,
+                        content = content.featureName,
+                        checked = dampingRatioTabSelected == index,
+                        rowScope = this@Row
+                    ){
+                        dampingRatioTabSelected = index
+                        dampingRatioValue = content.dampingRatioValue
+                        springSpecStudioViewModel.changeSpringSpecValue(
+                            dampingRatio = dampingRatioValue,
+                            stiffness = stiffNessValue
+                        )
                     }
-                )
-                toggleableItem(
-                    checked = selected == 1,
-                    label = "1",
-                    onCheckedChange = {
-                        selected = 1
-                    }
-                )
+                }
             }
-            Text("Stiffness Tab")
-            Row() { }
+            Text(
+                text = "Stiffness Tab",
+                style = MaterialTheme.typography.titleLarge
+            )
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 20.dp)
+            ){
+                stiffnessTabRenderingList.forEachIndexed { index, content ->
+                    toggleButton(
+                        list = stiffnessTabRenderingList,
+                        index = index,
+                        content = content.featureName,
+                        checked = stiffNessTabSelected == index,
+                        rowScope = this@Row
+                    ){
+                        stiffNessTabSelected = index
+                        stiffNessValue = content.stiffnessValue
+                        springSpecStudioViewModel.changeSpringSpecValue(
+                            dampingRatio = dampingRatioValue,
+                            stiffness = stiffNessValue
+                        )
+                    }
+                }
+            }
         }
-    }
 }
-@Composable
-@PreviewLightDark
-private fun _springSpecStudioControllerPreview(){
-    springSpecStudioController()
-}
+//@Composable
+//@PreviewLightDark
+//private fun _springSpecStudioControllerPreview(){
+//    springSpecStudioController()
+//}
