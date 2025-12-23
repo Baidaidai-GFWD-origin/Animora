@@ -12,7 +12,7 @@ data class springSpecParameterData(
 )
 
 class springSpecStudioViewModel: ViewModel(){
-    private val _enableSpring = MutableStateFlow(false)
+    private val _enableSpring = MutableStateFlow(true)
     private val _springSpecValue = MutableStateFlow(
         value = springSpecParameterData(
             dampingRatio = Spring.DampingRatioLowBouncy,
