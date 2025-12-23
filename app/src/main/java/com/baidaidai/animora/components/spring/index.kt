@@ -40,7 +40,7 @@ fun springSpecSceenContainer(
     val blueState by blueStateViewModel.blueState.collectAsState()
 
     val assetsManager = LocalContext.current.assets
-    var inputStream = assetsManager.open("markdown/animateContentSize.md")
+    var inputStream = assetsManager.open("markdown/springSpec.md")
     var markdownContent = inputStream.bufferedReader().use { it.readText() }
 
     val scrollableState = rememberScrollableState { it }
@@ -90,10 +90,22 @@ fun springSpecSceenContainer(
                 }
             }
             HorizontalDivider(
-                thickness = 3.dp,
+                thickness = 1.dp,
                 modifier = Modifier
                     .padding(
                         top = 10.dp,
+                        bottom = 10.dp,
+                        start = 5.dp,
+                        end = 5.dp
+                    )
+            )
+            springSpecStudioController(
+                springSpecStudioViewModel
+            )
+            HorizontalDivider(
+                thickness = 0.1.dp,
+                modifier = Modifier
+                    .padding(
                         bottom = 10.dp,
                         start = 5.dp,
                         end = 5.dp
