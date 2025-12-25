@@ -1,33 +1,14 @@
 package com.baidaidai.animora.components.spring.components
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.sizeIn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Collections
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.ButtonGroup
-import androidx.compose.material3.ButtonGroupDefaults
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
-import androidx.compose.material3.ToggleButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -35,15 +16,12 @@ import androidx.compose.runtime.setValue
 import com.baidaidai.animora.components.spring.model.list.dampingRatioTabRenderingList
 import com.baidaidai.animora.components.spring.model.list.stiffnessTabRenderingList
 import com.baidaidai.animora.components.spring.model.springSpecStudioViewModel
-import com.baidaidai.animora.components.spring.springSpecSceenContainer
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
+import com.baidaidai.animora.components.spring.LocalSpringSpecStudioViewModel
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
-fun springSpecStudioController(
-    springSpecStudioViewModel: springSpecStudioViewModel
-){
+fun springSpecStudioController(){
 
     var dampingRatioTabSelected by rememberSaveable { mutableStateOf(0) }
     var stiffNessTabSelected by rememberSaveable { mutableStateOf(0) }
@@ -51,15 +29,15 @@ fun springSpecStudioController(
     var dampingRatioValue by rememberSaveable { mutableFloatStateOf(1f) }
     var stiffNessValue by rememberSaveable { mutableFloatStateOf(50f) }
 
-
+    val springSpecStudioViewModel = LocalSpringSpecStudioViewModel.current
         Column() {
             Text(
-                text = "DampingRatio Tab",
-                style = MaterialTheme.typography.titleLarge
+                text = "DampingRatio",
+                style = MaterialTheme.typography.titleSmall
             )
             Row(
                 modifier = Modifier
-                    .padding(vertical = 20.dp)
+                    .padding(vertical = 10.dp)
             ){
                 dampingRatioTabRenderingList.forEachIndexed { index, content ->
                     toggleButton(
@@ -79,12 +57,12 @@ fun springSpecStudioController(
                 }
             }
             Text(
-                text = "Stiffness Tab",
-                style = MaterialTheme.typography.titleLarge
+                text = "Stiffness",
+                style = MaterialTheme.typography.titleSmall
             )
             Row(
                 modifier = Modifier
-                    .padding(vertical = 20.dp)
+                    .padding(vertical = 10.dp)
             ){
                 stiffnessTabRenderingList.forEachIndexed { index, content ->
                     toggleButton(

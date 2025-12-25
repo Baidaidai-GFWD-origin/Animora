@@ -45,9 +45,9 @@ fun toggleButton(
                     else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
                 },
                 modifier = Modifier
-                    .height(40.dp)
+                    .height(32.dp)
                     .weight(
-                        weight = if (checked) 1.3f else 1f
+                        weight = if (checked) 1.5f else 1.2f
                     )
             ) {
                 Text(
@@ -57,7 +57,7 @@ fun toggleButton(
             }
             Spacer(
                 modifier = Modifier
-                    .width(8.dp)
+                    .width(2.dp)
             )
     }
 }
