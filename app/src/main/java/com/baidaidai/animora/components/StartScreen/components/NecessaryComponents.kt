@@ -1,5 +1,6 @@
-package com.baidaidai.animora.shared.components
+package com.baidaidai.animora.components.StartScreen.components
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.outlined.Home
@@ -21,6 +22,8 @@ import kotlinx.coroutines.launch
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.currentBackStackEntryAsState
 
 final object NecessaryComponents {
@@ -42,7 +45,9 @@ final object NecessaryComponents {
                         contentDescription = ""
                     )
                 }
-            }
+            },
+            modifier = Modifier
+                .padding(horizontal = 5.dp)
         )
     }
 

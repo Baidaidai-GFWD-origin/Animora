@@ -18,7 +18,7 @@ import com.baidaidai.animora.InfoActivity
 import com.baidaidai.animora.components.StartScreen.home.homeScreenComtainer
 import com.baidaidai.animora.components.StartScreen.list.animationListContainer
 import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
-import com.baidaidai.animora.shared.components.NecessaryComponents
+import com.baidaidai.animora.components.StartScreen.components.NecessaryComponents
 
 @Composable
 fun startScreenContainer(
