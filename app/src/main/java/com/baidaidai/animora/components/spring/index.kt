@@ -15,7 +15,9 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -25,9 +27,12 @@ import androidx.navigation.NavController
 import com.baidaidai.animora.components.spring.animationStudio.animationStudio
 import com.baidaidai.animora.components.spring.model.springSpecStudioViewModel
 import com.baidaidai.animora.components.animation.detail.NecessaryComponents
+import com.baidaidai.animora.components.spring.components.springSpecControllerHost
 import com.baidaidai.animora.components.spring.components.springSpecStudioController
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 import dev.jeziellago.compose.markdowntext.MarkdownText
+
+val LocalSpringSpecStudioViewModel = compositionLocalOf<springSpecStudioViewModel>{ error("No springSpecStudioViewModel provided") }
 
 @Composable
 fun springSpecSceenContainer(
@@ -42,8 +47,6 @@ fun springSpecSceenContainer(
     val assetsManager = LocalContext.current.assets
     var inputStream = assetsManager.open("markdown/springSpec.md")
     var markdownContent = inputStream.bufferedReader().use { it.readText() }
-
-    val scrollableState = rememberScrollableState { it }
 
     Scaffold(
         topBar = {
@@ -99,9 +102,11 @@ fun springSpecSceenContainer(
                         end = 5.dp
                     )
             )
-            springSpecStudioController(
-                springSpecStudioViewModel
-            )
+            CompositionLocalProvider(
+                LocalSpringSpecStudioViewModel provides springSpecStudioViewModel
+            ) {
+                springSpecControllerHost()
+            }
             HorizontalDivider(
                 thickness = 0.1.dp,
                 modifier = Modifier
