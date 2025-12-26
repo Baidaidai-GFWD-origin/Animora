@@ -3,8 +3,13 @@ package com.baidaidai.animora.components.animation.demo.singel
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ExperimentalSharedTransitionApi
 import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.core.EaseInOut
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.spring
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -29,39 +34,32 @@ fun sharedElement(blueState: Boolean){
     SharedTransitionLayout {
         AnimatedContent(
             targetState = blueState,
+            transitionSpec = { fadeIn() togetherWith fadeOut() }
         ){ blueState ->
             if (blueState){
-                Row(
+                Image(
+                    painter = painterResource(R.drawable.demo_tree),
+                    contentDescription = "A image",
                     modifier = Modifier
                         .sharedElement(
                             sharedContentState = rememberSharedContentState("image"),
                             animatedVisibilityScope = this@AnimatedContent
                         )
-                ){
-                    Image(
-                        painter = painterResource(R.drawable.demo_tree),
-                        contentDescription = "A image",
-                        modifier = Modifier
-                            .size(200.dp)
-                            .clip(shape = CircleShape)
-                    )
-                }
+                        .size(200.dp)
+                        .clip(shape = CircleShape)
+                )
             }else{
-                Row(
+                Image(
+                    painter = painterResource(R.drawable.demo_tree),
+                    contentDescription = "A image",
                     modifier = Modifier
                         .sharedElement(
                             sharedContentState = rememberSharedContentState("image"),
                             animatedVisibilityScope = this@AnimatedContent
                         )
-                ){
-                    Image(
-                        painter = painterResource(R.drawable.demo_tree),
-                        contentDescription = "A image",
-                        modifier = Modifier
-                            .size(100.dp)
-                            .clip(shape = CircleShape)
-                    )
-                }
+                        .size(100.dp)
+                        .clip(shape = CircleShape)
+                )
             }
         }
     }
