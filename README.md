@@ -30,8 +30,7 @@ An open source Material Design Animation Textbook and Teaching Equipment
 
 - [x] Basic Feature Available
 - [x] Add necessary SpringSpec API discovery
-- [ ] Add the SliderAPI for better customization
-- [ ] Add sharedTransition API for list view
+- [x] Add sharedTransition API for list view
 - [ ] Add more annotations for the project
 - [x] Use CI/CD for best practice
 - [ ] Upload the application to F-Droid
