@@ -1,6 +1,8 @@
 package com.baidaidai.animora.components.animation.detail
 
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -16,6 +18,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.baidaidai.animora.LocalAnimatedContentScope
+import com.baidaidai.animora.LocalSharedTransitionScope
 
 final object NecessaryComponents {
     @OptIn(
@@ -25,24 +29,34 @@ final object NecessaryComponents {
     @Composable
     fun animationDetailsTopAppBar(
         content: String,
-        onClick: () -> Unit
-
+        onClick: () -> Unit,
     ){
-        TopAppBar(
-            title = {
-                Text(text = content)
-            },
-            navigationIcon = {
-                IconButton(
-                    onClick = onClick
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowBackIosNew,
-                        contentDescription = "Back"
+        val sharedTransitionScope = LocalSharedTransitionScope.current
+        val animatedContentScope = LocalAnimatedContentScope.current
+        with(sharedTransitionScope){
+            TopAppBar(
+                title = {
+                    Text(
+                        text = content,
+                        modifier = Modifier
+                            .sharedBounds(
+                                sharedContentState = rememberSharedContentState("AnimationTitle-${content}"),
+                                animatedVisibilityScope = animatedContentScope
+                            )
                     )
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onClick
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.ArrowBackIosNew,
+                            contentDescription = "Back"
+                        )
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     @Composable

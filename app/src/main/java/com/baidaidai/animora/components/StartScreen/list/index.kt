@@ -1,7 +1,9 @@
 package com.baidaidai.animora.components.StartScreen.list
 
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -44,7 +46,7 @@ import kotlinx.coroutines.launch
 fun animationListContainer(
     contentPaddingValues: PaddingValues,
     navController: NavController,
-    viewModel: homeScreenBlurViewModel
+    viewModel: homeScreenBlurViewModel,
 ){
 
     val animationDatasViewModel = LocalAnimationViewModel.current

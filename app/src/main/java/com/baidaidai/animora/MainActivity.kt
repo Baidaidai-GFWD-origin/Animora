@@ -4,7 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionLayout
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,6 +26,16 @@ import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 
 val LocalAnimationViewModel = compositionLocalOf<animationDatasViewModel> {
     error("No animationDatasViewModel provided")
+}
+
+@OptIn(ExperimentalSharedTransitionApi::class)
+val LocalSharedTransitionScope = compositionLocalOf<SharedTransitionScope>{
+    error("No SharedTransitionScope provided")
+}
+
+@OptIn(ExperimentalSharedTransitionApi::class)
+val LocalAnimatedContentScope = compositionLocalOf<AnimatedContentScope>{
+    error("No AnimatedContentScope provided")
 }
 
 class MainActivity : ComponentActivity() {
@@ -61,33 +74,45 @@ fun AnimoraApp(
     val blueStateViewModel = viewModel<blueStateViewModel>()
     val context = LocalContext.current
 
-    NavHost(
-        navController = totalNavigationController,
-        startDestination = "Start"
-    ) {
-        composable(
-            route = "Start"
-        ){
-            startScreenContainer(
-                context = context,
-                homeViewNavController = homeViewNavController,
-                totalNavigationController = totalNavigationController
-            )
-        }
-        composable(
-            route = "Detail"
-        ){
-            animationDetailContainer(
-                blueStateViewModel = blueStateViewModel,
-                navController = totalNavigationController
-            )
-        }
-        composable(
-            route = "springStudio"
-        ){
-            springSpecSceenContainer(
-                navController = totalNavigationController
-            )
+    SharedTransitionLayout {
+        NavHost(
+            navController = totalNavigationController,
+            startDestination = "Start"
+        ) {
+            composable(
+                route = "Start"
+            ){
+                CompositionLocalProvider(
+                    LocalSharedTransitionScope provides this@SharedTransitionLayout,
+                    LocalAnimatedContentScope provides this@composable
+                ) {
+                    startScreenContainer(
+                        context = context,
+                        homeViewNavController = homeViewNavController,
+                        totalNavigationController = totalNavigationController,
+                    )
+                }
+            }
+            composable(
+                route = "Detail"
+            ){
+                CompositionLocalProvider(
+                    LocalSharedTransitionScope provides this@SharedTransitionLayout,
+                    LocalAnimatedContentScope provides this@composable
+                ) {
+                    animationDetailContainer(
+                        blueStateViewModel = blueStateViewModel,
+                        navController = totalNavigationController,
+                    )
+                }
+            }
+            composable(
+                route = "springStudio"
+            ){
+                springSpecSceenContainer(
+                    navController = totalNavigationController
+                )
+            }
         }
     }
 }

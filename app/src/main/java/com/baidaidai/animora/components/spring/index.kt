@@ -26,7 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.baidaidai.animora.components.spring.animationStudio.animationStudio
 import com.baidaidai.animora.components.spring.model.springSpecStudioViewModel
-import com.baidaidai.animora.components.animation.detail.NecessaryComponents
+import com.baidaidai.animora.components.spring.components.NecessaryComponents
 import com.baidaidai.animora.components.spring.components.springSpecControllerHost
 import com.baidaidai.animora.components.spring.components.springSpecStudioController
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
@@ -50,7 +50,7 @@ fun springSpecSceenContainer(
 
     Scaffold(
         topBar = {
-            NecessaryComponents.animationDetailsTopAppBar(
+            NecessaryComponents.springSpecTopAppBar(
                 content = "SpringSpce Studio"
             ) {
                 navController.popBackStack()
@@ -58,7 +58,7 @@ fun springSpecSceenContainer(
             }
         },
         floatingActionButton = {
-            NecessaryComponents.animationDetailsFloatActionButton {
+            NecessaryComponents.springSpecFloatActionButton {
                 blueStateViewModel.changeBlueState(!blueState)
             }
         }

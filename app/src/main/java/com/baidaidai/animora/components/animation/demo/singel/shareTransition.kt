@@ -23,12 +23,12 @@ fun shareTransition(blueState: Boolean){
             if (blueState){
                 Row(
                     modifier = Modifier
+                        .border(1.dp, color = Color.Black)
                         .sharedBounds(
                             sharedContentState = rememberSharedContentState("Border"),
                             animatedVisibilityScope = this@AnimatedContent
                         )
                         .fillMaxWidth()
-                        .border(1.dp, color = Color.Black)
                     ,
                 ){
                     Text(
@@ -52,12 +52,12 @@ fun shareTransition(blueState: Boolean){
             }else{
                 Column(
                     modifier = Modifier
+                        .border(1.dp, color = Color.Black)
                         .sharedBounds(
                             sharedContentState = rememberSharedContentState("Border"),
                             animatedVisibilityScope = this@AnimatedContent
                         )
                         .size(100.dp)
-                        .border(1.dp, color = Color.Black)
                     ,
                 ){
                     Text(

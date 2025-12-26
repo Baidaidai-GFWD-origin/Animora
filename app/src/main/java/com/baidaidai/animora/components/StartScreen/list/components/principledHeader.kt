@@ -32,7 +32,7 @@ fun principledHeader(
         7 -> {
             Header(content = "Animatable Family")
         }
-        12 -> {
+        13 -> {
             Header(content = "InfiniteTransition Family")
         }
     }
