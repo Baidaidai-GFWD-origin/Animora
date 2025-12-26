@@ -1,6 +1,8 @@
 package com.baidaidai.animora.components.animation.detail
 
+import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -25,24 +27,34 @@ final object NecessaryComponents {
     @Composable
     fun animationDetailsTopAppBar(
         content: String,
-        onClick: () -> Unit
-
+        sharedTransitionScope: SharedTransitionScope,
+        animatedContentScope: AnimatedContentScope,
+        onClick: () -> Unit,
     ){
-        TopAppBar(
-            title = {
-                Text(text = content)
-            },
-            navigationIcon = {
-                IconButton(
-                    onClick = onClick
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.ArrowBackIosNew,
-                        contentDescription = "Back"
+        with(sharedTransitionScope){
+            TopAppBar(
+                title = {
+                    Text(
+                        text = content,
+                        modifier = Modifier
+                            .sharedBounds(
+                                sharedContentState = rememberSharedContentState("AnimationTitle-${content}"),
+                                animatedVisibilityScope = animatedContentScope
+                            )
                     )
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClick = onClick
+                    ) {
+                        Icon(
+                            imageVector = Icons.Outlined.ArrowBackIosNew,
+                            contentDescription = "Back"
+                        )
+                    }
                 }
-            }
-        )
+            )
+        }
     }
 
     @Composable

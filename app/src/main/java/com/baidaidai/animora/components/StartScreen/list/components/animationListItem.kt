@@ -1,5 +1,8 @@
 package com.baidaidai.animora.components.StartScreen.list.components
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.clickable
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.QuestionMark
@@ -16,40 +19,48 @@ import androidx.compose.ui.draw.clip
 import com.baidaidai.animora.shared.dataClass.AnimationDatas
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalSharedTransitionApi::class)
 @Composable
 fun animationListItem(
     animationList: AnimationDatas,
     listOnClick:suspend()-> Unit,
-    questionOnClick:suspend()-> Unit
-
+    questionOnClick:suspend()-> Unit,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
 ){
     val coroutineScope = rememberCoroutineScope()
-    ListItem(
-        headlineContent = {
-            Text(
-                text = animationList.name,
-            )
-        },
-        trailingContent = {
-            IconButton(
-                onClick = {
-                    coroutineScope.launch {
-                        questionOnClick()
+    with(sharedTransitionScope){
+        ListItem(
+            headlineContent = {
+                Text(
+                    text = animationList.name,
+                    modifier = Modifier
+                        .sharedBounds(
+                            sharedContentState = rememberSharedContentState("AnimationTitle-${animationList.name}"),
+                            animatedVisibilityScope = animatedContentScope
+                        )
+                )
+            },
+            trailingContent = {
+                IconButton(
+                    onClick = {
+                        coroutineScope.launch {
+                            questionOnClick()
+                        }
                     }
+                ) {
+                    Icon(Icons.Outlined.QuestionMark, contentDescription = "Question")
                 }
-            ) {
-                Icon(Icons.Outlined.QuestionMark, contentDescription = "Question")
-            }
-        },
-        modifier = Modifier
-            .clip(MaterialTheme.shapes.medium)
-            .clickable(
-                onClick = {
-                    coroutineScope.launch {
-                        listOnClick()
+            },
+            modifier = Modifier
+                .clip(MaterialTheme.shapes.medium)
+                .clickable(
+                    onClick = {
+                        coroutineScope.launch {
+                            listOnClick()
+                        }
                     }
-                }
-            )
-    )
+                )
+        )
+    }
 }
