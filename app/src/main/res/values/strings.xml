@@ -24,33 +24,33 @@
     <string name="updateTransition_shortInfo">这是一个功能强大的动画协调器。当你的UI需要根据单一状态（如 `Expanded`/`Collapsed`）同时改变多个属性（如颜色、尺寸、圆角）时，`updateTransition` 可以确保所有这些动画同步开始、协同执行。\n\n它是处理复杂、多属性、状态驱动动画的首选方案。</string>
 
     <!-- animatable -->
-    <string name="AnimateTo_shortInfo">`Animatable` 是一个功能强大的、基于协程的 API，用于对单个值（如 `Float`, `Color`, `Dp` 等）进行动画。\n\n与`animate*AsState` 不同，它提供了更精细的控制能力，尤其适合处理手势驱动或需要中断和重启的复杂动画场景。</string>
+    <string name="AnimateTo_shortInfo">Animatable 是一个功能强大的、基于协程的 API，用于对单个值（如 Float, Color, Dp 等）进行动画。\n\n与animate*AsState 不同，它提供了更精细的控制能力，尤其适合处理手势驱动或需要中断和重启的复杂动画场景。</string>
 
     <!-- withMediumSpringSpec -->
-    <string name="withMediumSpringSpec_shortInfo">通过为 `Animatable.animateTo` 提供 `spring`动画规范（`AnimationSpec`），可以轻松创建出符合物理规律的弹簧动画效果，让组件的运动看起来更自然、生动。</string>
+    <string name="withMediumSpringSpec_shortInfo">通过为 Animatable.animateTo 提供 spring动画规范（AnimationSpec），可以轻松创建出符合物理规律的弹簧动画效果，让组件的运动看起来更自然、生动。</string>
 
     <!-- withDIYBezier -->
-    <string name="withDIYBezier_shortInfo">使用 `tween` 结合自定义的
-    `CubicBezierEasing`（三次贝塞尔缓动曲线），可以精确控制动画在时间上的速度变化，实现从“慢-快-慢”到“快-慢”等各种高度定制化的缓动效果。</string>
+    <string name="withDIYBezier_shortInfo">使用 tween 结合自定义的
+    CubicBezierEasing（三次贝塞尔缓动曲线），可以精确控制动画在时间上的速度变化，实现从“慢-快-慢”到“快-慢”等各种高度定制化的缓动效果。</string>
 
     <!--withKeyframesSpline-->
-    <string name="withKeyframesSpline_shortInfo">`keyframes`（关键帧）动画允许你将一个动画过程分解为多个阶段，并为每个阶段指定目标值和持续时间。\n\n这对于创建复杂的
+    <string name="withKeyframesSpline_shortInfo">keyframes（关键帧）动画允许你将一个动画过程分解为多个阶段，并为每个阶段指定目标值和持续时间。\n\n这对于创建复杂的
     、多步骤的动画序列非常有用，例如模拟一个物体先加速后减速再停止的运动。</string>
 
     <!--withInfinityRepeatable-->
-    <string name="withInfinityRepeatable_shortInfo">`infiniteRepeatable` 是一个特殊的 `AnimationSpec`，它可以将任何其他动画规范（如 `tween` 或
-    `keyframes`）包装成一个无限循环的动画。这对于创建持续的背景效果或加载指示器非常有用。</string>
+    <string name="withInfinityRepeatable_shortInfo">infiniteRepeatable 是一个特殊的 AnimationSpec，它可以将任何其他动画规范（如 tween 或
+    keyframes）包装成一个无限循环的动画。\n\n这对于创建持续的背景效果或加载指示器非常有用。</string>
 
     <!-- withSnap -->
-    <string name="withSnap_shortInfo">`snap` 是一种特殊的 `AnimationSpec`，它会让值的变化瞬间完成，没有任何过渡动画。\n\n当你需要立即将一个 Composable
+    <string name="withSnap_shortInfo">snap 是一种特殊的 AnimationSpec，它会让值的变化瞬间完成，没有任何过渡动画。\n\n当你需要立即将一个 Composable
     更新到新的状态而不需要动画时，可以使用它。</string>
 
     <!-- animateColor -->
-    <string name="animateColor_shortInfo">`rememberInfiniteTransition` 是专门用于创建无限循环动画的 API。\n\n通过它的 `animateColor`
+    <string name="animateColor_shortInfo">rememberInfiniteTransition 是专门用于创建无限循环动画的 API。\n\n通过它的 animateColor
     扩展函数，可以轻松实现一个在多个颜色之间平滑、无限循环过渡的效果，常用于创建闪烁、呼吸或渐变的背景。</string>
 
     <!-- animateFloat -->
-    <string name="animateFloat_shortInfo">`rememberInfiniteTransition` 的 `animateFloat`
+    <string name="animateFloat_shortInfo">rememberInfiniteTransition 的 animateFloat
     扩展函数可以创建一个在两个浮点数值之间无限循环的动画。\n\n这非常灵活，可以用来驱动尺寸、透明度、旋转角度、位置偏移等多种视觉属性的持续变化。</string>
 
     <string name="creater_note">这是我学习 Jetpack Compose 过程中的最终作品，用于练习 Compose 语法、Android 开发，并记录那些容易被遗忘的动画 API✨\n\n如果这个 App 对你有所帮助，欢迎在 GitHub 点个 ⭐️!\n\n祝你在 Android 的旅程中，始终保持灵感与热爱🚀\n\nCreater. Bai\n2025.12.16</string>
