@@ -1,5 +1,8 @@
 package com.baidaidai.animora.components.animation.detail
 
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.rememberScrollableState
 import androidx.compose.foundation.gestures.scrollable
@@ -27,10 +30,13 @@ import com.baidaidai.animora.LocalAnimationViewModel
 import com.baidaidai.animora.shared.viewModel.blueStateViewModel
 import dev.jeziellago.compose.markdowntext.MarkdownText
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun animationDetailContainer(
     blueStateViewModel: blueStateViewModel,
-    navController: NavController
+    navController: NavController,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
 ){
 
 
@@ -50,7 +56,9 @@ fun animationDetailContainer(
     Scaffold(
         topBar = {
             NecessaryComponents.animationDetailsTopAppBar(
-                content = animationDatas.name
+                content = animationDatas.name,
+                sharedTransitionScope = sharedTransitionScope,
+                animatedContentScope = animatedContentScope,
             ) {
                 navController.popBackStack()
                 blueStateViewModel.changeBlueState(false)

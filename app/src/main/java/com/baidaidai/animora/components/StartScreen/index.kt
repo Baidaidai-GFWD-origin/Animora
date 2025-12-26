@@ -2,6 +2,9 @@ package com.baidaidai.animora.components.StartScreen
 
 import android.content.Context
 import android.content.Intent
+import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.ExperimentalSharedTransitionApi
+import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
@@ -20,11 +23,14 @@ import com.baidaidai.animora.components.StartScreen.list.animationListContainer
 import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
 import com.baidaidai.animora.components.StartScreen.components.NecessaryComponents
 
+@OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun startScreenContainer(
     context: Context,
     homeViewNavController: NavHostController,
-    totalNavigationController: NavHostController
+    totalNavigationController: NavHostController,
+    sharedTransitionScope: SharedTransitionScope,
+    animatedContentScope: AnimatedContentScope,
 ){
     val intent = Intent(context,InfoActivity::class.java)
 
@@ -68,7 +74,9 @@ fun startScreenContainer(
                 animationListContainer(
                     contentPaddingValues = contentPadding,
                     navController = totalNavigationController,
-                    viewModel = homeScreenBlurViewModel
+                    viewModel = homeScreenBlurViewModel,
+                    sharedTransitionScope = sharedTransitionScope,
+                    animatedContentScope = animatedContentScope
                 )
             }
         }
