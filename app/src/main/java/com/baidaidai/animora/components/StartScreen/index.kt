@@ -29,8 +29,6 @@ fun startScreenContainer(
     context: Context,
     homeViewNavController: NavHostController,
     totalNavigationController: NavHostController,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedContentScope: AnimatedContentScope,
 ){
     val intent = Intent(context,InfoActivity::class.java)
 
@@ -75,8 +73,6 @@ fun startScreenContainer(
                     contentPaddingValues = contentPadding,
                     navController = totalNavigationController,
                     viewModel = homeScreenBlurViewModel,
-                    sharedTransitionScope = sharedTransitionScope,
-                    animatedContentScope = animatedContentScope
                 )
             }
         }

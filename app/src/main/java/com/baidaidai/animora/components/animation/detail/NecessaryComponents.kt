@@ -18,6 +18,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.baidaidai.animora.LocalAnimatedContentScope
+import com.baidaidai.animora.LocalSharedTransitionScope
 
 final object NecessaryComponents {
     @OptIn(
@@ -27,10 +29,10 @@ final object NecessaryComponents {
     @Composable
     fun animationDetailsTopAppBar(
         content: String,
-        sharedTransitionScope: SharedTransitionScope,
-        animatedContentScope: AnimatedContentScope,
         onClick: () -> Unit,
     ){
+        val sharedTransitionScope = LocalSharedTransitionScope.current
+        val animatedContentScope = LocalAnimatedContentScope.current
         with(sharedTransitionScope){
             TopAppBar(
                 title = {

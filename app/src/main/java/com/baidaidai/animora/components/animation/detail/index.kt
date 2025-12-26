@@ -35,8 +35,6 @@ import dev.jeziellago.compose.markdowntext.MarkdownText
 fun animationDetailContainer(
     blueStateViewModel: blueStateViewModel,
     navController: NavController,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedContentScope: AnimatedContentScope,
 ){
 
 
@@ -57,8 +55,6 @@ fun animationDetailContainer(
         topBar = {
             NecessaryComponents.animationDetailsTopAppBar(
                 content = animationDatas.name,
-                sharedTransitionScope = sharedTransitionScope,
-                animatedContentScope = animatedContentScope,
             ) {
                 navController.popBackStack()
                 blueStateViewModel.changeBlueState(false)

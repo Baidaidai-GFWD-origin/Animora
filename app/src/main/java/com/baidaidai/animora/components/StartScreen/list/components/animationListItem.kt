@@ -16,6 +16,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import com.baidaidai.animora.LocalAnimatedContentScope
+import com.baidaidai.animora.LocalSharedTransitionScope
 import com.baidaidai.animora.shared.dataClass.AnimationDatas
 import kotlinx.coroutines.launch
 
@@ -25,9 +27,9 @@ fun animationListItem(
     animationList: AnimationDatas,
     listOnClick:suspend()-> Unit,
     questionOnClick:suspend()-> Unit,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedContentScope: AnimatedContentScope,
 ){
+    val sharedTransitionScope = LocalSharedTransitionScope.current
+    val animatedContentScope = LocalAnimatedContentScope.current
     val coroutineScope = rememberCoroutineScope()
     with(sharedTransitionScope){
         ListItem(

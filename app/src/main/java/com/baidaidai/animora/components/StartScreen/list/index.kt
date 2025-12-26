@@ -47,8 +47,6 @@ fun animationListContainer(
     contentPaddingValues: PaddingValues,
     navController: NavController,
     viewModel: homeScreenBlurViewModel,
-    sharedTransitionScope: SharedTransitionScope,
-    animatedContentScope: AnimatedContentScope,
 ){
 
     val animationDatasViewModel = LocalAnimationViewModel.current
@@ -89,8 +87,6 @@ fun animationListContainer(
                         .padding(start = 20.dp, end = 20.dp)
                 ) {
                     animationListItem(
-                        sharedTransitionScope = sharedTransitionScope,
-                        animatedContentScope = animatedContentScope,
                         animationList = animationList,
                         listOnClick = {
                             animationDatasViewModel.changeSelectedAnimation(
