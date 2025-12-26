@@ -47,7 +47,7 @@ fun sharedElement(blueState: Boolean){
                     )
                 }
             }else{
-                Column(
+                Row(
                     modifier = Modifier
                         .sharedElement(
                             sharedContentState = rememberSharedContentState("image"),
