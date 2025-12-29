@@ -27,6 +27,15 @@ import kotlinx.coroutines.delay
 
 object animatable {
 
+    /**
+     * 演示 [Animatable.animateTo] 的基本用法。
+     *
+     * 这个 Composable 会根据 [blueState] 的状态来驱动一个 [Box] 的透明度（alpha）动画。
+     * 当 `blueState` 为 true 时，它会将 alpha 动画到 0.5，等待一秒，然后再动画到 0。
+     * 当 `blueState` 为 false 时，它会将 alpha 动画回 1。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun AnimateTo(blueState: Boolean){
         var alphaValue = remember { Animatable(1f) }
@@ -50,6 +59,15 @@ object animatable {
         }
     }
 
+    /**
+     * 演示 [Animatable] 如何与 [spring] 动画规格结合使用。
+     *
+     * 这个 Composable 会使用一个具有中等回弹效果（[Spring.DampingRatioMediumBouncy]）
+     * 和中等刚度（[Spring.StiffnessMedium]）的弹簧动画来驱动 [Box] 的宽度变化。
+     * 动画由 [blueState] 的变化触发。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun withMediumSpringSpec(blueState: Boolean){
         var widthValue = remember { Animatable(100f) }
@@ -90,6 +108,14 @@ object animatable {
         }
     }
 
+    /**
+     * 演示 [Animatable] 如何与自定义的 [CubicBezierEasing] 缓动曲线结合使用。
+     *
+     * 这个 Composable 使用一个 [tween] 动画规格，并结合一个自定义的贝塞尔曲线，
+     * 来创建一个独特的缓动效果，用于驱动 [Box] 的宽度变化。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun withDIYBezier(blueState: Boolean){
         var widthValue = remember { Animatable(100f) }
@@ -125,6 +151,15 @@ object animatable {
         }
     }
 
+    /**
+     * 演示 [Animatable] 如何与 [keyframesWithSpline] 动画结合使用。
+     *
+     * 这个 Composable 通过一系列关键帧来驱动 [Box] 的宽度动画。
+     * 动画会在给定的时间点之间，使用样条曲线平滑地插值宽度值，
+     * 从而对动画的进程提供精细的控制。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun withKeyframesSpline(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
@@ -158,6 +193,16 @@ object animatable {
         }
     }
 
+    /**
+     * 演示 [Animatable] 如何与 [infiniteRepeatable] 动画结合使用。
+     *
+     * 这个 Composable 使用一个无限重复的关键帧动画来驱动 [Box] 的宽度变化，
+     * 并在每个周期结束时反转方向。
+     * 注意：虽然 `Animatable` 可以启动一个无限动画，但这会阻塞协程。
+     * 对于“即发即忘”的无限动画，[rememberInfiniteTransition] 通常是更好的选择。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun withInfinityRepeatable(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
@@ -193,6 +238,14 @@ object animatable {
         }
     }
 
+    /**
+     * 演示 [Animatable] 如何与 [snap] 动画规格结合使用。
+     *
+     * 这个 Composable 会立即改变 [Box] 的宽度，而没有任何动画过渡。
+     * `snap` 规格对于那些不需要过渡的即时状态变更非常有用。
+     *
+     * @param blueState 一个布尔值状态，用于触发动画。
+     */
     @Composable
     fun withSnap(blueState: Boolean) {
         val widthValue = remember { Animatable(100f) }
@@ -219,7 +272,5 @@ object animatable {
             )
         }
     }
-
-
 }
 
