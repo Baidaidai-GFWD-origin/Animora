@@ -59,6 +59,13 @@ private val springSpecStudioControllerExitTransition = slideOutVertically(
 
 private val springSpecStudioControllerTransitionSpec = springSpecStudioControllerEnterTransition togetherWith springSpecStudioControllerExitTransition
 
+/**
+ * Spring 动画工作室的控制器宿主（Host）面板。
+ *
+ * 这个 Composable 函数以一个可展开/折叠的卡片形式，容纳了 [springSpecStudioController]。
+ * 它包含一个标题行和一个可点击的图标，用于控制内容的可见性。
+ * 内容的展开和折叠使用了自定义的 `slideInVertically` 和 `slideOutVertically` 动画。
+ */
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun springSpecControllerHost(){
