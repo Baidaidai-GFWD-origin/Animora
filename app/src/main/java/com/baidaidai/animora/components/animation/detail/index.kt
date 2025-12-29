@@ -115,12 +115,3 @@ fun animationDetailContainer(
         }
     }
 }
-
-
-//@Composable
-//@PreviewLightDark
-//fun animationDetailContainerPreview(){
-//    TestAppTheme {
-//        animationDetailContainer()
-//    }
-//}
