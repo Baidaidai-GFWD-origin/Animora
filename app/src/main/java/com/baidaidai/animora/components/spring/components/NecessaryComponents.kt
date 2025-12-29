@@ -17,6 +17,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 object NecessaryComponents {
+    /**
+     * Spring 动画工作室页面的顶部应用栏（TopAppBar）。
+     *
+     * @param content 要在标题中显示的文本。
+     * @param onClick 返回按钮的点击事件回调。
+     */
     @OptIn(
         ExperimentalMaterial3Api::class,
         ExperimentalSharedTransitionApi::class
@@ -44,6 +50,13 @@ object NecessaryComponents {
         )
     }
 
+    /**
+     * Spring 动画工作室页面的悬浮操作按钮（FloatingActionButton）。
+     *
+     * 这个按钮用于触发预览动画的开始。
+     *
+     * @param onClick 按钮的点击事件回调。
+     */
     @Composable
     fun springSpecFloatActionButton(
         onClick:()-> Unit
