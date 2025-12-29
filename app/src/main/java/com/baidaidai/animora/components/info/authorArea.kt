@@ -17,6 +17,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.baidaidai.animora.R
 
+/**
+ * “关于”页面中的作者信息区域容器。
+ *
+ * 这个 Composable 函数以卡片的形式展示了作者信息，
+ * 包括作者名、Twitter 链接和 Github 链接。
+ *
+ * @param onClickGithub 当点击 "Follow my Github" 时触发的回调。
+ * @param onClickTwitter 当点击 "Follow my Twitter" 时触发的回调。
+ */
 @Composable
 fun authorAreaContainer(
     onClickGithub:()-> Unit,
