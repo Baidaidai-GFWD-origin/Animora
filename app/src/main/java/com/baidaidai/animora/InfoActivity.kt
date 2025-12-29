@@ -26,12 +26,3 @@ class InfoActivity : ComponentActivity() {
         }
     }
 }
-
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
-@PreviewLightDark
-@Composable
-fun infoScreenPreview() {
-    TestAppTheme {
-        infoScreen()
-    }
-}
