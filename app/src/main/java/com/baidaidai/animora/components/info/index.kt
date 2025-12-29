@@ -18,6 +18,16 @@ import androidx.compose.ui.unit.dp
 import com.baidaidai.animora.R
 import com.baidaidai.animora.components.info.infoScreen.NecessaryComponents
 
+/**
+ * Animora 应用的 Info 页面容器型 Composable。
+ *
+ * 该函数负责展示应用信息，包括：
+ * - 应用版本号和项目地址
+ * - 作者介绍及社交链接（GitHub、Twitter）
+ *
+ * @see Scaffold
+ * @see LocalUriHandler
+ */
 @Composable
 fun infoScreen(){
     val activity = LocalContext.current as Activity
