@@ -48,30 +48,30 @@ fun toggleButton(
     onCheckedChange:()-> Unit
 ){
     with(rowScope){
-            ToggleButton(
-                checked = checked,
-                onCheckedChange = {
-                    onCheckedChange()
-                },
-                shapes = when(index){
-                    0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
-                    list.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
-                    else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
-                },
-                modifier = Modifier
-                    .height(32.dp)
-                    .weight(
-                        weight = if (checked) 1.5f else 1.2f
-                    )
-            ) {
-                Text(
-                    text = content,
-                    style = MaterialTheme.typography.labelSmall
+        ToggleButton(
+            checked = checked,
+            onCheckedChange = {
+                onCheckedChange()
+            },
+            shapes = when(index){
+                0 -> ButtonGroupDefaults.connectedLeadingButtonShapes()
+                list.lastIndex -> ButtonGroupDefaults.connectedTrailingButtonShapes()
+                else -> ButtonGroupDefaults.connectedMiddleButtonShapes()
+            },
+            modifier = Modifier
+                .height(32.dp)
+                .weight(
+                    weight = if (checked) 1.5f else 1.2f
                 )
-            }
-            Spacer(
-                modifier = Modifier
-                    .width(2.dp)
+        ) {
+            Text(
+                text = content,
+                style = MaterialTheme.typography.labelSmall
             )
+        }
+        Spacer(
+            modifier = Modifier
+                .width(2.dp)
+        )
     }
 }
