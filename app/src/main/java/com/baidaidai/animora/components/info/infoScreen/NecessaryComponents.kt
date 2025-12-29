@@ -11,6 +11,13 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 
 object NecessaryComponents {
+    /**
+     * “关于”页面的顶部应用栏（TopAppBar）。
+     *
+     * 这个 Composable 包含一个返回按钮和一个固定的标题 "About"。
+     *
+     * @param onClick 返回按钮的点击事件回调。
+     */
     @OptIn(
         ExperimentalMaterial3Api::class,
         ExperimentalMaterial3ExpressiveApi::class
@@ -35,5 +42,4 @@ object NecessaryComponents {
             }
         )
     }
-
 }
