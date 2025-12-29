@@ -23,6 +23,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ *  一个在 [ButtonGroup] 内部使用的、可切换的按钮。                                                                                                                                                                                                                    │
+ *                                                                                                                                                                                                                                                                     │
+ *  这个 Composable 函数根据其在按钮组中的位置（第一个、中间或最后一个）                                                                                                                                                                                               │
+ * 自动应用不同的形状，以创建连接在一起的视觉效果。                                                                                                                                                                                                                   │
+ *                                                                                                                                                                                                                                                                    │
+ * @param list 包含所有按钮的列表，用于判断当前按钮的位置。                                                                                                                                                                                                           │
+ * @param index 当前按钮在 [list] 中的索引。                                                                                                                                                                                                                          │
+ * @param content 按钮上显示的文本。                                                                                                                                                                                                                                  │
+ * @param checked 按钮当前是否处于选中状态。                                                                                                                                                                                                                          │
+ * @param rowScope [RowScope] 的实例，用于在行布局中正确放置按钮。                                                                                                                                                                                                    │
+ * @param onCheckedChange 当按钮的选中状态改变时触发的回调。
+  */
+
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun toggleButton(
