@@ -27,6 +27,14 @@ import androidx.compose.ui.unit.dp
 import com.baidaidai.animora.R
 import kotlinx.coroutines.launch
 
+/**
+ * “关于”页面中的应用信息区域容器。
+ *
+ * 这个 Composable 函数以卡片的形式展示了应用信息，
+ * 包括应用 Logo、名称、版本号以及一个指向 Github 的链接。
+ *
+ * @param onClick 当点击 "View in Github" 时触发的回调。
+ */
 @Composable
 fun infoAreaContainer(
     onClick: ()->Unit
