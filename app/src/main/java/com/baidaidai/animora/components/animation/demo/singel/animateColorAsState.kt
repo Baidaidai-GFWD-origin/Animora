@@ -13,6 +13,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
+/**
+ * 演示 [animateColorAsState] 的用法。
+ *
+ * 当 [blueState] 改变时，这个 Composable 会自动地、平滑地
+ * 在灰色和红色之间创建颜色过渡动画。
+ *
+ * @param blueState 一个布尔值状态，用于在两种颜色之间切换。
+ */
 @Composable
 fun animateColorAsState(
     blueState: Boolean
