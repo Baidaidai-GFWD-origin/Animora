@@ -36,9 +36,6 @@ fun animationDetailContainer(
     blueStateViewModel: blueStateViewModel,
     navController: NavController,
 ){
-
-
-
     val animationDatasViewModel = LocalAnimationViewModel.current
     val blueStateViewModel = blueStateViewModel
 
