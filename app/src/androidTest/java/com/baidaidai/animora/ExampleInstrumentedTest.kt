@@ -47,4 +47,28 @@ class ExampleInstrumentedTest {
         ).performClick()
         composeTestRule.onNodeWithText("shareBorder").assertExists()
     }
+
+    @OptIn(ExperimentalMaterial3ExpressiveApi::class)
+    @Test
+    fun navigate_to_info_activity_and_back(){
+        composeTestRule.setContent {
+            val animationDetailsViewModel = viewModel<animationDatasViewModel>()
+            CompositionLocalProvider(
+                LocalAnimationViewModel provides animationDetailsViewModel
+            ) {
+                AnimoraApp()
+            }
+        }
+        composeTestRule.onNodeWithContentDescription(
+            label = "Info",
+            useUnmergedTree = true
+        ).performClick()
+        composeTestRule.onNodeWithText("About").assertExists()
+        composeTestRule.onNodeWithContentDescription(
+            label = "Back",
+            useUnmergedTree = true
+        ).performClick()
+        composeTestRule.onNodeWithText("Home").assertExists()
+    }
+
 }
