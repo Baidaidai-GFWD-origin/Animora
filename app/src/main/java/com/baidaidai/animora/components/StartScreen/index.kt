@@ -2,9 +2,7 @@ package com.baidaidai.animora.components.StartScreen
 
 import android.content.Context
 import android.content.Intent
-import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.ExperimentalSharedTransitionApi
-import androidx.compose.animation.SharedTransitionScope
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
