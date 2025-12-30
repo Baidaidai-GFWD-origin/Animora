@@ -24,6 +24,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.baidaidai.animora.R
 
+/**
+ * A composable that displays an introduction card for the author.
+ *
+ * This card contains the author's avatar, name, GitHub handle, and a short note.
+ * It is styled using Material Design components.
+ */
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun introduceCard(){
