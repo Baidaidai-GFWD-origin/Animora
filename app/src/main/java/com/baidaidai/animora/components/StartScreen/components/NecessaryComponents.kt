@@ -42,7 +42,7 @@ final object NecessaryComponents {
                 ) {
                     Icon(
                         painter = painterResource(R.drawable.info_24px),
-                        contentDescription = ""
+                        contentDescription = "Info"
                     )
                 }
             },

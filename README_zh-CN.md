@@ -30,7 +30,7 @@
 - [x] 基础功能已完成
 - [x] 补充必要的 SpringSpec API 探索
 - [x] 为列表视图引入 SharedTransition API
-- [ ] 为项目补充更多注释与文档说明
+- [x] 为项目补充更多注释与文档说明
 - [x] 使用 CI/CD 作为最佳实践
 - [ ] 将应用发布到 F-Droid
 - [ ] 将应用发布到 Google Play
