@@ -23,6 +23,17 @@ import com.baidaidai.animora.components.StartScreen.list.animationListContainer
 import com.baidaidai.animora.components.StartScreen.model.homeScreenBlurViewModel
 import com.baidaidai.animora.components.StartScreen.components.NecessaryComponents
 
+/**
+ * The main container composable for the start screen, managing the overall layout and navigation.
+ *
+ * This composable sets up a [Scaffold] with a top app bar and a bottom navigation bar.
+ * It hosts a [NavHost] to switch between the "Home" and "List" screens.
+ * It also handles a blur effect that can be triggered by a [homeScreenBlurViewModel].
+ *
+ * @param context The Android [Context] used for creating intents.
+ * @param homeViewNavController The [NavHostController] for the inner navigation between Home and List screens.
+ * @param totalNavigationController The main [NavHostController] for navigating to other parts of the app.
+ */
 @OptIn(ExperimentalSharedTransitionApi::class)
 @Composable
 fun startScreenContainer(
