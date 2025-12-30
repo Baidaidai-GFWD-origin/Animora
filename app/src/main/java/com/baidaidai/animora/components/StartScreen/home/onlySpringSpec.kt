@@ -18,6 +18,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * A composable that displays a clickable card to navigate to the "SpringSpec" feature.
+ *
+ * This card serves as a navigation entry point to a specific feature,
+ * indicated as "Only For SpringSpec". It includes an icon and text, and a forward arrow
+ * to suggest navigation.
+ *
+ * @param onClick A lambda function to be invoked when the card is clicked.
+ */
 @Composable
 fun onlySpringSpce(
     onClick: ()-> Unit
