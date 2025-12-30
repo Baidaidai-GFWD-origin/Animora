@@ -20,6 +20,13 @@ import androidx.compose.ui.unit.dp
 
 object infiniteTransition {
 
+    /**
+     * 演示如何使用 [rememberInfiniteTransition] 创建一个无限循环的颜色动画。
+     *
+     * 这个 Composable 使用 `infiniteTransition.animateColor` 来驱动一个 [Box] 的背景颜色，
+     * 使其在灰色和红色之间平滑地、无限地来回过渡。
+     * 动画规格使用了 `tween` 和 `RepeatMode.Reverse`。
+     */
     @Composable
     fun animateColor(){
         val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition Demo")
@@ -44,6 +51,13 @@ object infiniteTransition {
         }
     }
 
+    /**
+     * 演示如何使用 [rememberInfiniteTransition] 创建一个无限循环的浮点值动画。
+     *
+     * 这个 Composable 使用 `infiniteTransition.animateFloat` 来驱动一个 [Box] 的宽度，
+     * 使其在 100.dp 和 300.dp 之间平滑地、无限地来回变化。
+     * 动画规格使用了 `tween` 和 `RepeatMode.Reverse`。
+     */
     @Composable
     fun animateFloat(){
         val infiniteTransition = rememberInfiniteTransition(label = "infiniteTransition Demo")

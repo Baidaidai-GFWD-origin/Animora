@@ -34,6 +34,18 @@ import dev.jeziellago.compose.markdowntext.MarkdownText
 
 val LocalSpringSpecStudioViewModel = compositionLocalOf<springSpecStudioViewModel>{ error("No springSpecStudioViewModel provided") }
 
+/**
+ * Spring 动画工作室的主屏幕容器。
+ *
+ * 这个 Composable 函数构建了整个 Spring 动画工作室的 UI，包括：
+ * - 顶部应用栏（[NecessaryComponents.springSpecTopAppBar]）。
+ * - 悬浮操作按钮（[NecessaryComponents.springSpecFloatActionButton]），用于触发动画。
+ * - 动画预览区域（[animationStudio]）。
+ * - 参数控制器（[springSpecControllerHost]），通过 [CompositionLocalProvider] 注入 ViewModel。
+ * - 显示相关信息的 Markdown 文本。
+ *
+ * @param navController 用于处理导航事件（如返回上一页）的 [NavController]。
+ */
 @Composable
 fun springSpecSceenContainer(
     navController: NavController

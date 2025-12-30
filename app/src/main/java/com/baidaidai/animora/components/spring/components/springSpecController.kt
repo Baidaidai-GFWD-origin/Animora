@@ -19,6 +19,14 @@ import com.baidaidai.animora.components.spring.model.springSpecStudioViewModel
 import androidx.compose.runtime.mutableFloatStateOf
 import com.baidaidai.animora.components.spring.LocalSpringSpecStudioViewModel
 
+/**
+ * Spring 动画工作室的参数控制器。
+ *
+ * 这个 Composable 包含两组按钮组（[toggleButton]），分别用于选择预设的
+ * `DampingRatio`（阻尼比）和 `Stiffness`（刚度）值。
+ * 当用户选择不同的预设值时，它会通过 [LocalSpringSpecStudioViewModel]
+ * 更新全局的 Spring 动画参数。
+ */
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun springSpecStudioController(){
@@ -83,8 +91,3 @@ fun springSpecStudioController(){
             }
         }
 }
-//@Composable
-//@PreviewLightDark
-//private fun _springSpecStudioControllerPreview(){
-//    springSpecStudioController()
-//}

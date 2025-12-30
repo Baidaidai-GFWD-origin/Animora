@@ -9,6 +9,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
+/**
+ * A container composable for the home screen.
+ *
+ * This composable arranges the main content of the home screen, including the
+ * introduction card and other feature cards.
+ *
+ * @param contentPadding The padding values provided by the Scaffold to avoid overlapping with system bars.
+ * @param onlySpringSpecOnClick A lambda function to be invoked when the "Only For SpringSpec" card is clicked.
+ */
 @Composable
 fun homeScreenComtainer(
     contentPadding: PaddingValues,
